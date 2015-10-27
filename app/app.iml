@@ -94,6 +94,7 @@
     <orderEntry type="library" exported="" name="support-v13-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="android-pdfview-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
+    <orderEntry type="library" exported="" name="afinal_0.5.1_bin" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
   </component>
 </module>

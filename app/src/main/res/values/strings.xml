@@ -1,7 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ShareReader</string>
-    <string name="title_activity_main">MainActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">室图</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="search_hint">搜索..</string>
+    <string name="make_road_button">生成路径</string>
+    <string name="your_position">请输入起点</string>
+    <string name="location_success">定位成功.</string>
+    <string name="location_error_local_inmap">定位失败.您不在该建筑物内</string>
+    <string name="location_error_net_tips">当前网络不可用,请检查您的网络!</string>
+    <string name="location_error_url_no_set">定位失败.请在工具里面设置定位地址</string>
+    <string name="location_error_url_unfind">定位失败.定位接口不正确</string>
+    <string name="churukou">出入口</string>
+    <string name="dengjikou">登机口</string>
+    <string name="anjian">安检</string>
+    <string name="shangdian">商店</string>
+    <string name="weishengjian">卫生间</string>
+    <string name="dianti">电梯</string>
+    <string name="input_the_destination">搜索</string>
+    <string name="action_search">Place Search</string>
+    <string name="action_clear">Clear</string>
+    <string name="loading_map">初次使用，正在导入地图包</string>
+    <string name="no_find_map">未找到地图包，请按照说明导入地图包重启应用</string>
+    <string name="search_title">Search</string>
+    <string name="suggestion_text">Suggestion</string>
+    <string name="ip_error">定位接口不正确或您未连接WIFI</string>
+    <string name="email">396324491@qq.com</string>
+    <string name="shut_ok">截图成功</string>
+    <string name="doubleclick">再次点击退出</string>
+    <string name="start_noset">未设置起点</string>
+    <string name="end_noset">未设置终点</string>
+    <string name="atm">ATM</string>
+    <string name="mylocation">我的位置</string>
+    <string name="firendlocation">好友位置</string>
+    <string name="makepath_error">不能生成路径.请检查输入</string>
+    <string name="go_end_success">成功到达终点.</string>
+    <string name="go_mid_success">已到达一个目的地</string>
+    <string name="deviate_path">您偏移了路径，已为您重新规划</string>
+    <string name="up_floor_ing">正在上楼中...</string>
+    <string name="down_floor_ing">正在下楼中...</string>
+    <!-- progress dialog messages -->
+    <string name="address_search">Searching for Address</string>
+    <string name="row_number">This is row number %d</string>
+    <string name="removed_positions">Removed positions: %s</string>
+    <string name="moved">\'%1$s\' moved to position %2$s</string>
+    <string name="newly_added_item">新增中转点%d</string>
+    <string name="taptoundo">取消</string>
+    <string name="itemdeleted">删除</string>
+    <string name="imlocation">我在用室图，我在这儿，点我吧 -></string>
+    <string name="activity_dynamiclistview_header">Touch the grip or long press an item to drag.\nSwipe to dismiss.\nTap an item to insert a new item.</string>
+    <string name="toast_register_all_error">请填写完整注册信息</string>
+    <string name="toast_register_tel_error">手机位数应为11位</string>
+    <string name="toast_register_pswlenth_error">密码应大于等于6位</string>
+    <string name="toast_register_psw_unequal_error">两次输入密码不同</string>
+    <string name="toast_register_success">注册成功，登录帐号为你的手机号</string>
+
+    <!-- chat -->
+    <!--<string name="app_name">Bmob_IM_test</string>-->
+    <!--<string name="action_settings">Settings</string>-->
+    <!--<string name="hello_world">Hello world!</string>-->
+    <string name="login_username_hint">请输入用户名&#8230;</string>
+    <string name="login_password_hint">请输入密码&#8230;</string>
+    <string name="login_email_hint">请在此输入密码&#8230;</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="register_txt1">还没有账号？</string>
+    <string name="register_txt2">立即注册 ></string>
+    <string name="login_account">账号 </string>
+    <string name="login_pwd">密码 </string>
+    <string name="login_email">确认密码 </string>
+    <string name="message_search_hint">搜索&#8230;</string>
+
+    <string name="main_tab_recent">会话</string>
+    <string name="main_tab_contact">联系人</string>
+    <string name="mian_tab_circle">动态</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载&#8230;</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="add_avator">头像</string>
+    <string name="add_nick">昵称</string>
+    <string name="add_name">账号</string>
+    <string name="add_name_hint">请输入昵称&#8230;</string>
+    <string name="add_gender">性别</string>
+
+    <string name="set_notify">接收新消息通知</string>
+    <string name="set_myinfo">个人资料</string>
+    <string name="set_blacklist">黑名单</string>
+    <string name="set_voice">声音</string>
+    <string name="set_vibrate">震动</string>
+    <string name="tips">提示</string>
+
+    <string name="logout">退出登录</string>
+    <string name="pop_photo">拍照</string>
+    <string name="pop_choose">从手机相册选中</string>
+    <string name="network_tips">当前网络不可用,请检查您的网络!</string>
+    <string name="toast_error_password_null">密码不能为空</string>
+    <string name="toast_error_username_null">用户名不能为空</string>
+    <string name="toast_error_comfirm_password">输入的两次密码不一致</string>
+
+    <string name="blacklist">黑名单</string>
+    <string name="chat">发起会话</string>
+    <string name="add_friend">添加好友</string>
+
+    <string name="send_state">已读</string>
+
+    <string name="longclick_speak">长按说话</string>
+    <string name="picture">照片</string>
+    <string name="camera">拍摄</string>
+    <string name="location">位置</string>
+
+    <string name="black_tips">已添加至黑名单，你将不再收到对方的消息!</string>
+
+    <string name="username">用户名</string>
+    <string name="search">搜索</string>
+
+    <string name="new_friends">新朋友</string>
+
+    <string name="near_people">附近的人</string>
+
+    <string name="voice_up_tips">手指上滑,取消发送</string>
+    <string name="voice_cancel_tips">松开手指，取消发送</string>
+
+    <string name="voice_seconds_tips">还可以说%1$s秒</string>
+
+    <string name="voice_short_tips">录音时间太短</string>
+
+    <string name="hello">Hello World, ListViewDemoActivity!</string>
+    <string name="place_pic">地点图片</string>
+    <string name="place_name">福建晋江国际机场一楼大厅商店11</string>
+    <string name="go_here">&#xe613; 到这里去</string>
+    <string name="mark_place">&#xe61f; 收藏</string>
+    <string name="marked_place">&#xe648; 已收藏</string>
+    <string name="write_comm">&#xe652; 写评论</string>
+    <string name="rate_stars">星级：</string>
+    <string name="submit_comm">提交</string>
+    <string name="comm_hint">请输入评论...</string>
+    <string name="write_comm_activity">writeCommActivity</string>
+    <string name="avatar">Avatar</string>
+    <string name="comm_time">7月29日</string>
+    <string name="comm_content">五星级厕所！！！</string>
+    <string name="abroading">包含咨询处（换登机牌、托运行李等）、安检、商店（可能需要购物）、登机口（根据你的情况选择）等</string>
+    <string name="farewell">包含咨询处（换登机牌、托运行李等）、安检、商店（可能需要购物）、出入口（根据你的情况选择，离开机场）等</string>
+    <string name="spacial_shop">包含当地的特产商店 S17、S27、S32、S39、S24、</string>
+    <string name="fashion_shop">包含时尚时装和饰品等商店 S17、S27、S32、S39、S24、</string>
+    <string name="food_shop">包含美食商店 S17、S27、S32、S39、S24、一条龙让你吃个够</string>
+    <string name="waiting_shop">敬请期待</string>
+
+    <string name="write_comm_to_w2">http://192.168.191.1/AMap/write_comm.php</string>
+    <string name="get_comm_from_w2">http://192.168.191.1/AMap/get_comm.php</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
 </resources>

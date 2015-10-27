@@ -1,8 +1,9 @@
-package com.france.sharereader;
+package com.france.sharereader.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.france.sharereader.R;
 import com.joanzapata.pdfview.PDFView;
 
 public class MainActivity extends Activity  {
