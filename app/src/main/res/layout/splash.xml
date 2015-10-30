@@ -20,6 +20,6 @@ android:layout_gravity是相对与它的父元素说的，说明元素显示在�
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/wordpress_logo"
-        android:src="@drawable/enterPicture">
+        android:src="@drawable/enterpicture">
     </ImageView>
 </LinearLayout>
