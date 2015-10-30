@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.amap.view.HeaderLayout
+<com.france.sharereader.ui.view.HeaderLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/base_action_bar_height"
+    android:id="@+id/common_actionbar"
+    android:layout_height="20dp"
     android:background="@color/white">
 
-</com.example.amap.view.HeaderLayout >
+</com.france.sharereader.ui.view.HeaderLayout >
