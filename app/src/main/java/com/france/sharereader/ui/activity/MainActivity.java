@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 	private void initLeftSlip(){
 		toolbar.setTitle(R.string.app_name);//设置Toolbar标题
-		toolbar.setTitleTextColor(R.color.white); //设置标题颜色
+		toolbar.setTitleTextColor(getResources().getColor(R.color.white)); //设置标题颜色
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
