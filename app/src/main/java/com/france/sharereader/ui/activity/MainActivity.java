@@ -1,21 +1,33 @@
 package com.france.sharereader.ui.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.adapter.LeftMenuAdapter;
+import com.france.sharereader.adapter.PlanExpandAdapter;
 import com.france.sharereader.util.LogUtil;
 
 import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 	//声明相关变量
@@ -23,8 +35,9 @@ public class MainActivity extends ActionBarActivity {
 	@ViewInject(id=R.id.dl_left)private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	@ViewInject(id=R.id.lv_left_menu)private ListView lvLeftMenu;
+	@ViewInject(id=R.id.list_plan)private ExpandableListView ListPlan;
 	private SimpleAdapter simpleAdapter;
-
+	private PlanExpandAdapter planExpandAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
 //		initViews(); //获取控件
 		initLeftSlip();//侧滑
 		initClickEvents();//注册事件
-
+        initListPlan();
 
 	}
 	private void initViews() {
@@ -73,5 +86,9 @@ public class MainActivity extends ActionBarActivity {
 		//设置菜单列表
 		simpleAdapter = new LeftMenuAdapter().getAdapter(this);
 		lvLeftMenu.setAdapter(simpleAdapter);
+	}
+    private void initListPlan(){
+		planExpandAdapter= new PlanExpandAdapter(MainActivity.this);
+		ListPlan.setAdapter(planExpandAdapter);
 	}
 }
