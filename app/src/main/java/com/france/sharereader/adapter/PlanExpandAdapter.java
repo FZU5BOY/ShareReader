@@ -95,7 +95,7 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
         }
         holder.list_plan.setText(getGroup(groupPosition).toString());
         holder.clock.setImageResource(R.drawable.ic_clock);
-        holder.more.setImageResource(R.drawable.ic_more_gray);
+        holder.more.setImageResource(R.drawable.ic_clock);
         return convertView;
     }
     class ChildrenHolder {
