@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.france.sharereader.R;
+import com.france.sharereader.adapter.BookSimpleAdapter;
 import com.france.sharereader.adapter.LeftMenuAdapter;
 import com.france.sharereader.adapter.PlanExpandAdapter;
 import com.france.sharereader.util.LogUtil;
@@ -36,8 +37,10 @@ public class MainActivity extends ActionBarActivity {
 	private ActionBarDrawerToggle mDrawerToggle;
 	@ViewInject(id=R.id.lv_left_menu)private ListView lvLeftMenu;
 	@ViewInject(id=R.id.list_plan)private ExpandableListView ListPlan;
+	@ViewInject(id=R.id.mybook_list)private ListView BookList;
 	private SimpleAdapter simpleAdapter;
 	private PlanExpandAdapter planExpandAdapter;
+	private SimpleAdapter bookSimpleAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 		initLeftSlip();//侧滑
 		initClickEvents();//注册事件
         initListPlan();
-
+		initBookList();
 	}
 	private void initViews() {
 		toolbar = (Toolbar) findViewById(R.id.tl_custom);
@@ -90,5 +93,9 @@ public class MainActivity extends ActionBarActivity {
     private void initListPlan(){
 		planExpandAdapter= new PlanExpandAdapter(MainActivity.this);
 		ListPlan.setAdapter(planExpandAdapter);
+	}
+	private void initBookList(){
+		bookSimpleAdapter=new BookSimpleAdapter().getBookSimpleAdapter(this);
+		BookList.setAdapter(bookSimpleAdapter);
 	}
 }
