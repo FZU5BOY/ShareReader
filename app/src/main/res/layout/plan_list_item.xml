@@ -7,30 +7,31 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp" />
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         android:gravity="center_vertical"
         android:text="data"
         android:textColor="@color/gray"
         android:textSize="18sp"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        android:layout_weight="10">
     </TextView>
 
     <ImageView
         android:id="@+id/more"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="20dp" />
+        android:layout_weight="1"/>
 </LinearLayout>
 
