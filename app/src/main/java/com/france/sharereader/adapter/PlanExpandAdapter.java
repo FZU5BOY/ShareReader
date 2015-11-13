@@ -88,14 +88,12 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
             holder = new GroupHolder();
             holder.list_plan = ((TextView) convertView.findViewById(R.id.title));
             holder.clock = (ImageView) convertView.findViewById(R.id.img);
-            holder.more = (ImageView) convertView.findViewById(R.id.more);
             convertView.setTag(holder);
         } else {
             holder = (GroupHolder) convertView.getTag();
         }
         holder.list_plan.setText(getGroup(groupPosition).toString());
         holder.clock.setImageResource(R.drawable.ic_clock);
-        holder.more.setImageResource(R.drawable.ic_add);
         return convertView;
     }
     class ChildrenHolder {

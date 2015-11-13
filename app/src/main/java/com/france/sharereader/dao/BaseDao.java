@@ -13,4 +13,5 @@ import net.tsz.afinal.FinalDb;
  * Created by Administrator on 2015/10/30.
  */
 public interface BaseDao {
+     boolean addPdf(String pdfName,String pdfPath);
 }

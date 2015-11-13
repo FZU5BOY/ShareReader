@@ -3,10 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
-
-    <item android:id="@+id/action_open"
-        android:title="打开本地书籍"
-        android:orderInCategory="10"
+    <group
+        android:id="@+id/new_group"
         android:icon="@drawable/ic_add"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom">
+        <item
+            android:id="@+id/new_plan"
+            android:title="@string/add_plan" />
+        <item
+            android:id="@+id/new_book"
+            android:title="@string/add_book" />
+    </group>
 </menu>
