@@ -20,6 +20,14 @@ public class Book extends ReadBase{
     private String firstPhotoPath;//拟采用截图的方法去得到封面
     private String bookName;
 
+    public Book() {
+    }
+
+    public Book(String bookName, double progress) {
+        this.bookName = bookName;
+        this.progress = progress;
+    }
+
     public String getCreatTime() {
         return creatTime;
     }

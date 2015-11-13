@@ -1,32 +1,25 @@
 package com.france.sharereader.ui.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.france.sharereader.R;
-import com.france.sharereader.adapter.BookSimpleAdapter;
+import com.france.sharereader.adapter.BookBaseAdapter;
 import com.france.sharereader.adapter.LeftMenuAdapter;
 import com.france.sharereader.adapter.PlanExpandAdapter;
+import com.france.sharereader.bean.Book;
 import com.france.sharereader.util.LogUtil;
 
 import net.tsz.afinal.FinalActivity;
@@ -47,11 +40,11 @@ public class MainActivity extends BaseActivity {
     @ViewInject(id = R.id.list_plan)
     private ExpandableListView ListPlan;
     @ViewInject(id = R.id.mybook_list)
-    private ListView BookList;
-
+    private ListView bookList;
     private SimpleAdapter simpleAdapter;
+    private BookBaseAdapter bookBaseAdapter;
     private PlanExpandAdapter planExpandAdapter;
-    private SimpleAdapter bookSimpleAdapter;
+//    private SimpleAdapter bookSimpleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +83,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
     private void initClickEvents() {
         lvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -172,7 +164,19 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initBookList() {
-        bookSimpleAdapter = new BookSimpleAdapter().getBookSimpleAdapter(this);
-        BookList.setAdapter(bookSimpleAdapter);
+        List<Book> books=new ArrayList<Book>();
+        //数据获取 应该是从数据库 这边模拟
+        books.add(new Book("疯狂android讲义",38));
+        books.add(new Book("图解机器学习",77));
+        //数据获取结束
+        bookBaseAdapter = new BookBaseAdapter(MainActivity.this,books);
+        bookList.setAdapter(bookBaseAdapter);
+        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                ShowLog ("你点击了ListView条目" + arg2);//在LogCat中输出信息
+                ShowLog (((Book) bookList.getItemAtPosition(arg2)).getBookName());
+            }
+        });
     }
 }
