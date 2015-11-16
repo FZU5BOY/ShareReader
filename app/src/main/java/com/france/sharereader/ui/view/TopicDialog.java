@@ -39,6 +39,7 @@ public class TopicDialog extends AlertDialog.Builder {
             StringBuffer sb = new StringBuffer(100);
 
 
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 for(int i=0;i<isSelectItem.length;i++){
