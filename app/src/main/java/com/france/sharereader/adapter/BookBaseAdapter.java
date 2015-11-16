@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
+import com.france.sharereader.ui.view.TopicDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,7 @@ public class BookBaseAdapter extends BaseAdapter  {
                 @Override
                 public void onClick(View v) {
                     int position =Integer.parseInt(v.getTag().toString());
+                    TopicDialog topicDialog=new TopicDialog(ct);
                     Log.i("zjx","position is "+position);
                 }
             });
