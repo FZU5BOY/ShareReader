@@ -44,6 +44,10 @@
             android:name=".ui.activity.PDFViewActivity"
             >
         </activity>
+        <activity
+            android:name=".ui.activity.PlanDetailActivity"
+            >
+        </activity>
     </application>
 
 </manifest>

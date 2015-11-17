@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity {
         initClickEvents();//注册事件
         initListPlan();//计划列表
         initPlanListClickEvents();//进入具体计划页面
-        //	initAddPlanClickEvent();//添加计划
         initBookList();//书籍列表
     }
 
@@ -73,12 +72,11 @@ public class MainActivity extends BaseActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 LogUtil.ShowLog("Lareina_position:" + childPosition);
-//				Intent intent = new Intent(MainActivity.this, PlanDetailActicity.class);
-//				intent.setData();
-//				Bundle bundle = new Bundle();
-//				bundle.putString("title", planExpandAdapter.getChild(groupPosition, childPosition).toString());
-//				intent.putExtras(bundle);
-//				startActivity(intent);
+				Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("title", planExpandAdapter.getChild(groupPosition, childPosition).toString());
+				intent.putExtras(bundle);
+				startActivity(intent);
                 return true;
             }
         });
@@ -120,6 +118,11 @@ public class MainActivity extends BaseActivity {
             switch (item.getItemId()) {
                 case R.id.new_plan:
                     Toast.makeText(MainActivity.this, "" + "new plan", Toast.LENGTH_SHORT).show();
+                    Intent intent_plan=new Intent(MainActivity.this,PlanDetailActivity.class);
+                    Bundle empty_plan = new Bundle();
+                    empty_plan.putString("title","Title");
+                    intent_plan.putExtras(empty_plan);
+                    startActivity(intent_plan);
                     break;
                 case R.id.new_book:
                     Toast.makeText(MainActivity.this, "" + "new book", Toast.LENGTH_SHORT).show();
