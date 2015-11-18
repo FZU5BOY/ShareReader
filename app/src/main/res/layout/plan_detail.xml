@@ -44,6 +44,11 @@
             android:background="@color/gray"
             android:layout_marginTop="10dp"/>
         <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/display_time"
+            android:background="@null"/>
+        <EditText
             android:id="@+id/my_plan"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
