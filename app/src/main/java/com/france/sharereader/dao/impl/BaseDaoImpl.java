@@ -35,6 +35,8 @@ public class BaseDaoImpl implements BaseDao {
             book.setBookName(pdfName);
             book.setLocalPath(pdfPath);
             book.setCreatTime(new Date().toString());
+            book.setThemeId(-1);
+            book.setProgress(1);
             db.save(book);
             return true;
         }
@@ -65,5 +67,10 @@ public class BaseDaoImpl implements BaseDao {
     public boolean save(Object o) {
         db.save(o);
         return true;
+    }
+
+    @Override
+    public List<Book> findAllBook() {
+        return db.findAll(Book.class);
     }
 }

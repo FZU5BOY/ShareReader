@@ -177,8 +177,9 @@ public class MainActivity extends BaseActivity {
     private void initBookList() {
         List<Book> books=new ArrayList<Book>();
         //数据获取 应该是从数据库 这边模拟
-        books.add(new Book("疯狂android讲义",38));
-        books.add(new Book("图解机器学习",77));
+//        books.add(new Book("疯狂android讲义",38));
+//        books.add(new Book("图解机器学习",77));
+        books=baseDaoImpl.findAllBook();
         //数据获取结束
         bookBaseAdapter = new BookBaseAdapter(MainActivity.this,books);
         bookList.setAdapter(bookBaseAdapter);
@@ -186,7 +187,11 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 ShowLog ("你点击了ListView条目" + arg2);//在LogCat中输出信息
-                ShowLog (((Book) bookList.getItemAtPosition(arg2)).getBookName());
+                Book book=(Book)bookList.getItemAtPosition(arg2);
+                Intent intent=new Intent(MainActivity.this,PDFViewActivity.class);
+                intent.putExtra("filePath",book.getLocalPath());
+                intent.putExtra("fileName", book.getBookName());//实际应该传递一个book对象比较好
+                startActivity(intent);
             }
         });
     }

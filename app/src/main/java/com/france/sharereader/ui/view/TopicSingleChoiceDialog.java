@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+import com.france.sharereader.config.Config;
+
 /**
  * Created by Administrator on 2015/11/15.
  */
@@ -15,7 +17,7 @@ public class TopicSingleChoiceDialog extends AlertDialog.Builder implements Dial
         super(context);
         this.onTestListening=onTestListening;
         this.setTitle("选择所属话题");
-        final String[] hobbies = {"编译原理", "软件工程", "数据挖掘", "电子设计"};
+        final String[] hobbies = Config.TOPICS;
         //    设置一个单项选择下拉框
         /**
          * 第一个参数指定我们要显示的一组下拉多选框的数据集合

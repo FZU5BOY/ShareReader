@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface BaseDao {
      boolean addPdf(String pdfName,String pdfPath);
+     List<Book> findAllBook();
      boolean update(Object o);
      boolean save(Object o);
      boolean addPlan(String PlanTitle,String content,String addtime);
