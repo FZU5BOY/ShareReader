@@ -37,4 +37,16 @@ public class BaseDaoImpl implements BaseDao {
             return true;
         }
     }
+
+    @Override
+    public boolean update(Object o) {
+        db.update(o);
+        return true;
+    }
+
+    @Override
+    public boolean save(Object o) {
+        db.save(o);
+        return true;
+    }
 }

@@ -1,13 +1,11 @@
 package com.france.sharereader.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,7 +13,8 @@ import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
-import com.france.sharereader.ui.view.TopicDialog;
+import com.france.sharereader.ui.view.TopicMultipleChoiceDialog;
+import com.france.sharereader.ui.view.TopicSingleChoiceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +71,13 @@ public class BookBaseAdapter extends BaseAdapter  {
                 @Override
                 public void onClick(View v) {
                     int position =Integer.parseInt(v.getTag().toString());
-                    TopicDialog topicDialog=new TopicDialog(ct);
-                    Log.i("zjx","position is "+position);
+                    TopicSingleChoiceDialog topicSingleleChoiceDialog =new TopicSingleChoiceDialog(ct, new TopicSingleChoiceDialog.OnTestListening() {
+                        @Override
+                        public void getTopicID(int topicID) {
+                            Log.i("zjx","topicID:"+topicID);
+                        }
+                    });
+
                 }
             });
             holder.book_page=(ImageView)convertView.findViewById(R.id.book_page);
@@ -95,7 +99,5 @@ public class BookBaseAdapter extends BaseAdapter  {
         //http://www.2cto.com/kf/201108/101092.html
         return convertView;
     }
-
-
 
 }
