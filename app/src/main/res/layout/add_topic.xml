@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/custom_toolbar" />
-   <TextView
+    <TextView
        android:id="@+id/no_topic"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -26,6 +26,11 @@
         android:textSize="20dp"
         android:textColor="@color/gray"
         android:gravity="center"/>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topic_array">
+    </ListView>
     <Button
         android:id="@+id/add_topic_button"
         android:layout_width="wrap_content"

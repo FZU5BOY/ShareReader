@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -19,11 +20,17 @@ import android.widget.Toast;
 
 import com.france.sharereader.R;
 import com.france.sharereader.adapter.LeftMenuAdapter;
+import com.france.sharereader.adapter.TopicSelectAdapter;
+import com.france.sharereader.bean.Theme;
+import com.france.sharereader.config.Config;
 import com.france.sharereader.ui.view.TopicMultipleChoiceDialog;
 import com.france.sharereader.util.LogUtil;
 
 import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Viko on 2015/11/14.
@@ -39,8 +46,12 @@ public class TopicActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     @ViewInject(id = R.id.lv_left_menu)
     private ListView lvLeftMenu;
+    @ViewInject(id=R.id.topic_array)
+    private ListView topic_array;
     private ActionBarDrawerToggle mDrawerToggle;
     private SimpleAdapter simpleAdapter;
+    private TopicSelectAdapter topicSelectAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +60,30 @@ public class TopicActivity extends BaseActivity {
         initAddTopic();//添加话题
         initLeftSlip();//侧滑
         initClickEvents();//注册事件
+        initTopicAdapter();
     }
-
+    private void initTopicAdapter(){
+        List<Theme> themes = new ArrayList<>();
+        themes=baseDaoImpl.FindAllTopic();
+        topicSelectAdapter = new TopicSelectAdapter(TopicActivity.this,themes);
+        topic_array.setAdapter(topicSelectAdapter);
+    }
     //添加话题
     private void initAddTopic() {
+        List<Theme> mthemes = new ArrayList<>();
+        mthemes=baseDaoImpl.FindAllTopic();
         addTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TopicMultipleChoiceDialog topicDialog = new TopicMultipleChoiceDialog(TopicActivity.this, new TopicMultipleChoiceDialog.OnTestListening() {
+
                     @Override
                     public void getMutilChoice(boolean[] isSelectItem) {
-
+                        for (int i = 0; i < isSelectItem.length; i++) {
+                            if (isSelectItem[i]){
+                                ShowLog("insert into db success?:" + baseDaoImpl.addTopic(Config.TOPICS[i]));
+                            }
+                        }
                     }
                 });
             }
@@ -95,9 +119,6 @@ public class TopicActivity extends BaseActivity {
                 case R.id.new_plan:
                     Toast.makeText(TopicActivity.this, "" + "new plan", Toast.LENGTH_SHORT).show();
                     Intent intent_plan=new Intent(TopicActivity.this,PlanDetailActivity.class);
-                    Bundle empty_plan = new Bundle();
-                    empty_plan.putString("title","Title");
-                    intent_plan.putExtras(empty_plan);
                     startActivity(intent_plan);
                     break;
                 case R.id.new_book:

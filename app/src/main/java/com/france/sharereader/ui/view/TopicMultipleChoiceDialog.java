@@ -37,21 +37,7 @@ public class TopicMultipleChoiceDialog extends AlertDialog.Builder implements Di
                 isSelectItem[which]=isChecked;
             }
         });
-        this.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            StringBuffer sb = new StringBuffer(100);
-
-
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for(int i=0;i<isSelectItem.length;i++){
-                    if (isSelectItem[i]) {
-                        sb.append(hobbies[i] + ", ");
-                    }
-                }
-                Toast.makeText(context, "爱好为：" + sb.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        this.setPositiveButton("确定",this);
         this.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

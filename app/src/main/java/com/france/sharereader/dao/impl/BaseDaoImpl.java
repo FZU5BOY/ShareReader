@@ -5,9 +5,8 @@ import android.content.Context;
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
 import com.france.sharereader.bean.Plan;
-import com.france.sharereader.bean.User;
+import com.france.sharereader.bean.Theme;
 import com.france.sharereader.dao.BaseDao;
-import com.france.sharereader.util.UuidUtil;
 
 import net.tsz.afinal.FinalDb;
 
@@ -75,5 +74,22 @@ public class BaseDaoImpl implements BaseDao {
     @Override
     public List<Book> findAllBook() {
         return db.findAll(Book.class);
+    }
+
+    @Override
+    public boolean addTopic(String topic){
+        if(db.findAllByWhere(Theme.class,"name='"+topic+"'").size()>0){
+            return false;
+        }
+        else {
+            Theme theme = new Theme();
+            theme.setName(topic);
+            db.save(theme);
+            return true;
+        }
+    }
+    @Override
+    public List<Theme> FindAllTopic(){
+        return db.findAll(Theme.class);
     }
 }
