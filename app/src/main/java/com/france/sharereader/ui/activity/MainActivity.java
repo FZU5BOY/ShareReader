@@ -85,11 +85,16 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+    //Viko 2015/11/20 00:08
     private void initClickEvents() {
         lvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LogUtil.ShowLog("position:" + position);
+                if (position == 2) {
+                    Intent intent = new Intent(MainActivity.this, TopicActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
