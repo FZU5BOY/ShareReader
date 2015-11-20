@@ -4,16 +4,20 @@ package com.france.sharereader.ui.activity;
  * Created by Lareina on 2015/11/5.
  */
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Plan;
@@ -23,7 +27,8 @@ import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class PlanDetailActivity extends BaseActivity {
     @ViewInject(id = R.id.my_title)
@@ -62,7 +67,6 @@ public class PlanDetailActivity extends BaseActivity {
             title.setText(plan.getTitle());
             plan_content.setText(plan.getContent());
         }
-
         setTime();
         SavePlan();
         back();
@@ -90,9 +94,6 @@ public class PlanDetailActivity extends BaseActivity {
         save_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //获取当前文本
-//                plan_title =title.getText().toString().trim();
-//                plan_message =plan_content.getText().toString().trim();
                 if(plan.getPlanId()<=0) {
                     ShowLog("insert into db success?:" + baseDaoImpl.addPlan(title.getText().toString().trim(), plan_content.getText().toString().trim(),display_time.getText().toString().trim()));
                 }
@@ -112,6 +113,14 @@ public class PlanDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+    }
+    private void editTitle(){
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

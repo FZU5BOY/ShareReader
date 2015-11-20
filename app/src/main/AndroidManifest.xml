@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <receiver android:name="com.france.sharereader.ui.activity.alarmreceiver" android:process=":remote"/>
+
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
