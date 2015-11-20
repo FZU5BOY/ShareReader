@@ -38,6 +38,8 @@ import java.util.List;
 public class TopicActivity extends BaseActivity {
     @ViewInject(id=R.id.no_topic)
     private TextView noTopic;
+    @ViewInject(id=R.id.click_add)
+    private TextView clickAdd;
     @ViewInject(id=R.id.add_topic_button)
     private Button addTopic;
     @ViewInject(id = R.id.tl_custom)
@@ -65,6 +67,10 @@ public class TopicActivity extends BaseActivity {
     private void initTopicAdapter(){
         List<Theme> themes = new ArrayList<>();
         themes=baseDaoImpl.FindAllTopic();
+        if(themes.size()>0){
+            noTopic.setVisibility(View.GONE);
+            clickAdd.setVisibility(View.GONE);
+        }
         topicSelectAdapter = new TopicSelectAdapter(TopicActivity.this,themes);
         topic_array.setAdapter(topicSelectAdapter);
     }
@@ -79,6 +85,7 @@ public class TopicActivity extends BaseActivity {
 
                     @Override
                     public void getMutilChoice(boolean[] isSelectItem) {
+
                         for (int i = 0; i < isSelectItem.length; i++) {
                             if (isSelectItem[i]){
                                 ShowLog("insert into db success?:" + baseDaoImpl.addTopic(Config.TOPICS[i]));
@@ -163,6 +170,14 @@ public class TopicActivity extends BaseActivity {
                 LogUtil.ShowLog("position:" + position);
                 if (position == 0) {
                     Intent intent = new Intent(TopicActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                if (position == 2) {
+                    Intent intent = new Intent(TopicActivity.this, TopicActivity.class);
+                    startActivity(intent);
+                }
+                if (position == 1) {
+                    Intent intent = new Intent(TopicActivity.this, PlanDetailActivity.class);
                     startActivity(intent);
                 }
             }

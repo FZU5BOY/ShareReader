@@ -96,6 +96,14 @@ public class MainActivity extends BaseActivity {
                     Intent intent = new Intent(MainActivity.this, TopicActivity.class);
                     startActivity(intent);
                 }
+                if (position == 1) {
+                    Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
+                    startActivity(intent);
+                }
+                if (position == 0) {
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
