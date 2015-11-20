@@ -11,6 +11,7 @@ import com.france.sharereader.util.UuidUtil;
 
 import net.tsz.afinal.FinalDb;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,19 +27,21 @@ public class BaseDaoImpl implements BaseDao {
     }
 
     @Override
-    public boolean addPdf(String pdfName, String pdfPath) {
-        if(db.findAllByWhere(Book.class,"bookName='"+pdfName+"'").size()>0){
-            return false;
+    public Book addPdf(String pdfName, String pdfPath) {
+        Book book=new Book();
+        List<Book> bookList=new ArrayList<>();
+        bookList=db.findAllByWhere(Book.class,"bookName='"+pdfName+"'");
+        if(bookList.size()>0){
+            return bookList.get(0);
         }
         else{
-            Book book=new Book();
             book.setBookName(pdfName);
             book.setLocalPath(pdfPath);
             book.setCreatTime(new Date().toString());
-            book.setThemeId(-1);
-            book.setProgress(1);
+//            book.setThemeId(-1);
+//            book.setProgress(1);
             db.save(book);
-            return true;
+            return book;
         }
     }
     @Override

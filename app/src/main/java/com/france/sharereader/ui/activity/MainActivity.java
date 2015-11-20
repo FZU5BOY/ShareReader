@@ -76,11 +76,12 @@ public class MainActivity extends BaseActivity {
                 LogUtil.ShowLog("Lareina_position:" + childPosition);
 				Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
 				Bundle bundle = new Bundle();
-                bundle.putSerializable("plan",(Plan)planExpandAdapter.getChild(groupPosition, childPosition));
+                bundle.putSerializable("plan", (Plan) planExpandAdapter.getChild(groupPosition, childPosition));
 //				bundle.putString("title",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getTitle());
 //                bundle.putString("content",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getContent());
 				intent.putExtras(bundle);
 				startActivity(intent);
+                MainActivity.this.finish();
                 return true;
             }
         });
@@ -132,11 +133,13 @@ public class MainActivity extends BaseActivity {
 //                    empty_plan.putString("title","Title");
 //                    intent_plan.putExtras(empty_plan);
                     startActivity(intent_plan);
+                    MainActivity.this.finish();
                     break;
                 case R.id.new_book:
                     Toast.makeText(MainActivity.this, "" + "new book", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(MainActivity.this,FileManageActivity.class);
                     startActivity(intent);
+                    MainActivity.this.finish();
                     break;
             }
             return true;
@@ -194,9 +197,13 @@ public class MainActivity extends BaseActivity {
                 ShowLog ("你点击了ListView条目" + arg2);//在LogCat中输出信息
                 Book book=(Book)bookList.getItemAtPosition(arg2);
                 Intent intent=new Intent(MainActivity.this,PDFViewActivity.class);
-                intent.putExtra("filePath",book.getLocalPath());
-                intent.putExtra("fileName", book.getBookName());//实际应该传递一个book对象比较好
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("pdf",book);
+                intent.putExtras(bundle);
+//                intent.putExtra("filePath",book.getLocalPath());
+//                intent.putExtra("fileName", book.getBookName());//实际应该传递一个book对象比较好
                 startActivity(intent);
+                MainActivity.this.finish();
             }
         });
     }

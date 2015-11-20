@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
+import com.france.sharereader.config.Config;
+import com.france.sharereader.dao.BaseDao;
+import com.france.sharereader.dao.impl.BaseDaoImpl;
 import com.france.sharereader.ui.view.TopicMultipleChoiceDialog;
 import com.france.sharereader.ui.view.TopicSingleChoiceDialog;
 
@@ -56,17 +59,19 @@ public class BookBaseAdapter extends BaseAdapter  {
         TextView topic;
         ImageView book_page;
         ProgressBar progress_bar;
+        TextView progress_text;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        ViewHolder holder;
-        Book book = books.get(position);
+        final ViewHolder holder;
+        final Book book = books.get(position);
         if(convertView==null){
             convertView = inflater.inflate(R.layout.mybooks_list_item,parent,false);
             holder = new ViewHolder();
             holder.book_name=(TextView)convertView.findViewById(R.id.book_name);
             holder.topic=(TextView)convertView.findViewById(R.id.topic);
+            holder.progress_text=(TextView)convertView.findViewById(R.id.progress_num);
             holder.topic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -75,6 +80,12 @@ public class BookBaseAdapter extends BaseAdapter  {
                         @Override
                         public void getTopicID(int topicID) {
                             Log.i("zjx","topicID:"+topicID);
+                            if(topicID!=-1){
+                                holder.topic.setText(Config.TOPICS[topicID]);
+                                BaseDao baseDao=new BaseDaoImpl(ct);
+                                book.setThemeId(topicID);
+                                baseDao.update(book);
+                            }
                         }
                     });
 
@@ -93,9 +104,12 @@ public class BookBaseAdapter extends BaseAdapter  {
 //        tv2.setText(p.getName());
         holder.book_page.setImageResource(R.drawable.book_nopicture);//目前为暂未封面，完整实现为setImageBitmap
         holder.book_name.setText(book.getBookName());
-        holder.topic.setText("尚未选择");
+        if(book.getThemeId()==-1)
+            holder.topic.setText("尚未选择");
+        else holder.topic.setText(Config.TOPICS[book.getThemeId()]);
         holder.topic.setTag(position);//设置控件的位置 点击事件的时候获取
-        holder.progress_bar.setProgress((int)book.getProgress());
+        holder.progress_bar.setProgress(book.getProgress());
+        holder.progress_text.setText("已读"+book.getProgress()+"%");
         //http://www.2cto.com/kf/201108/101092.html
         return convertView;
     }

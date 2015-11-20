@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2015/10/30.
  */
 public interface BaseDao {
-     boolean addPdf(String pdfName,String pdfPath);
+     Book addPdf(String pdfName,String pdfPath);
      List<Book> findAllBook();
      boolean update(Object o);
      boolean save(Object o);

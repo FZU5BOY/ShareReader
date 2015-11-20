@@ -3,17 +3,20 @@ package com.france.sharereader.bean;
 import net.tsz.afinal.annotation.sqlite.Id;
 import net.tsz.afinal.annotation.sqlite.Table;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2015/10/30.
  */
 @Table(name="book")
-public class Book extends ReadBase{
+public class Book  implements Serializable{
     private String creatTime;
-    private int themeId;
-    private double progress;
+    private int themeId=-1;
+    private int progress=0;
     private Reminder reminder;
     private double grade;//评分
     private String comment;//评论
+    private int currentPage=1;
     @Id(column = "bookId")
     private int bookId;
     private String localPath;
@@ -23,7 +26,7 @@ public class Book extends ReadBase{
     public Book() {
     }
 
-    public Book(String bookName, double progress) {
+    public Book(String bookName, int progress) {
         this.bookName = bookName;
         this.progress = progress;
     }
@@ -44,13 +47,6 @@ public class Book extends ReadBase{
         this.themeId = themeId;
     }
 
-    public double getProgress() {
-        return progress;
-    }
-
-    public void setProgress(double progress) {
-        this.progress = progress;
-    }
 
     public Reminder getReminder() {
         return reminder;
@@ -106,5 +102,21 @@ public class Book extends ReadBase{
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }

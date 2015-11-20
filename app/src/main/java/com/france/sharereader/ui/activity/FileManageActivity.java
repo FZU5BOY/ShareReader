@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.france.sharereader.R;
+import com.france.sharereader.bean.Book;
 import com.france.sharereader.dao.impl.BaseDaoImpl;
 
 public class FileManageActivity extends BaseActivity {
@@ -67,10 +69,14 @@ public class FileManageActivity extends BaseActivity {
                         String fileName=names[0];
                         String filePath=currentFiles[position].getPath();
                         //调用数据接口
-                        ShowLog("insert into db success?:"+baseDaoImpl.addPdf(fileName,filePath));
-                        intent.putExtra("filePath",filePath);
-                        intent.putExtra("fileName",fileName);
+                        Book book=baseDaoImpl.addPdf(fileName,filePath);
+                        Bundle bundle=new Bundle();
+                        bundle.putSerializable("pdf",book);
+                        intent.putExtras(bundle);
+//                        intent.putExtra("filePath",filePath);
+//                        intent.putExtra("fileName",fileName);
                         startActivity(intent);
+                        FileManageActivity.this.finish();
                     }
                     return;
                 }
@@ -95,19 +101,9 @@ public class FileManageActivity extends BaseActivity {
         parent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View source) {
-                try {
-                    if (!currentParent.getCanonicalPath()
-                            .equals(extern)) {
-                        // 获取上一级目录
-                        currentParent = currentParent.getParentFile();
-                        // 列出当前目录下所有文件
-                        currentFiles = currentParent.listFiles();
-                        // 再次更新ListView
-                        inflateListView(currentFiles);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Intent intent =new Intent(FileManageActivity.this,MainActivity.class);
+                startActivity(intent);
+                FileManageActivity.this.finish();
             }
         });
     }
@@ -140,6 +136,23 @@ public class FileManageActivity extends BaseActivity {
         try {
             textView.setText("当前路径为："
                     + currentParent.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //后退按钮事件重写
+    @Override
+    public void onBackPressed() {
+        try {
+            if (!currentParent.getCanonicalPath()
+                    .equals(extern)) {
+                // 获取上一级目录
+                currentParent = currentParent.getParentFile();
+                // 列出当前目录下所有文件
+                currentFiles = currentParent.listFiles();
+                // 再次更新ListView
+                inflateListView(currentFiles);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
