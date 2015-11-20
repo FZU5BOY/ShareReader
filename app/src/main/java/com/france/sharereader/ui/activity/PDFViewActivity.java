@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
+
+import net.tsz.afinal.annotation.view.ViewInject;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +24,9 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
     public static final String SAMPLE_FILE = "sample.pdf";
 
     public static final String ABOUT_FILE = "about.pdf";
-
     PDFView pdfView;
-
+    TextView pdfHeadTitle;
+    TextView pdfPageAndCount;
     String pdfName = SAMPLE_FILE;
 
     Integer pageNumber = 1;
@@ -34,14 +37,17 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfview);
         pdfView=(PDFView)findViewById(R.id.pdfView);
+        pdfHeadTitle=(TextView)findViewById(R.id.book_name);
+        pdfPageAndCount=(TextView)findViewById(R.id.page_cnc);
         Intent intent=getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle!=null){
             book=(Book)bundle.getSerializable("pdf");
+            pdfHeadTitle.setText(book.getBookName());
             String fileName=book.getBookName();
             pageNumber=book.getCurrentPage();
             String filePath=book.getLocalPath();
-            display(fileName,filePath,false);
+            display(fileName, filePath, false);
         }
 
     }
@@ -66,6 +72,7 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
         this.pageCount = pageCount;
         setTitle(String.format("%s %s / %s", pdfName, page, pageCount));
         ShowLog(String.format("%s %s / %s", pdfName, page, pageCount));
+        pdfPageAndCount.setText(String.format("%s / %s",  page, pageCount));
     }
 
 //    @Override

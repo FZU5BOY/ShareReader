@@ -10,6 +10,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/book_name"
             android:layout_marginLeft="15dp"
             android:text="BookName"
             android:textSize="18dp"
@@ -38,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/page_num"
+            android:id="@+id/page_cnc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="2"
