@@ -20,6 +20,7 @@ import com.france.sharereader.adapter.BookBaseAdapter;
 import com.france.sharereader.adapter.LeftMenuAdapter;
 import com.france.sharereader.adapter.PlanExpandAdapter;
 import com.france.sharereader.bean.Book;
+import com.france.sharereader.bean.Plan;
 import com.france.sharereader.util.LogUtil;
 
 import net.tsz.afinal.FinalActivity;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
     private SimpleAdapter simpleAdapter;
     private BookBaseAdapter bookBaseAdapter;
     private PlanExpandAdapter planExpandAdapter;
+
 //    private SimpleAdapter bookSimpleAdapter;
 
     @Override
@@ -74,7 +76,9 @@ public class MainActivity extends BaseActivity {
                 LogUtil.ShowLog("Lareina_position:" + childPosition);
 				Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
 				Bundle bundle = new Bundle();
-				bundle.putString("title", planExpandAdapter.getChild(groupPosition, childPosition).toString());
+                bundle.putSerializable("plan",(Plan)planExpandAdapter.getChild(groupPosition, childPosition));
+//				bundle.putString("title",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getTitle());
+//                bundle.putString("content",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getContent());
 				intent.putExtras(bundle);
 				startActivity(intent);
                 return true;
@@ -119,9 +123,9 @@ public class MainActivity extends BaseActivity {
                 case R.id.new_plan:
                     Toast.makeText(MainActivity.this, "" + "new plan", Toast.LENGTH_SHORT).show();
                     Intent intent_plan=new Intent(MainActivity.this,PlanDetailActivity.class);
-                    Bundle empty_plan = new Bundle();
-                    empty_plan.putString("title","Title");
-                    intent_plan.putExtras(empty_plan);
+//                    Bundle empty_plan = new Bundle();
+//                    empty_plan.putString("title","Title");
+//                    intent_plan.putExtras(empty_plan);
                     startActivity(intent_plan);
                     break;
                 case R.id.new_book:
@@ -161,8 +165,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initListPlan() {
+        List<Plan> plans=new ArrayList<>();
+
+        plans=baseDaoImpl.FindAllPlan();
+        Log.i("zjx","plan size:"+plans.size());
         ListPlan.setGroupIndicator(null);
-        planExpandAdapter = new PlanExpandAdapter(MainActivity.this);
+        planExpandAdapter = new PlanExpandAdapter(MainActivity.this,plans);
         ListPlan.setAdapter(planExpandAdapter);
     }
 

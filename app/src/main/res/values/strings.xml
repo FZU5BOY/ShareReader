@@ -9,6 +9,7 @@
     <string name="search_hint">搜索..</string>
     <string name="add_plan">新增计划</string>
     <string name="add_book">新增书籍</string>
+    <string name="save">保存</string>
     <string name="title_activity_file_manage">FileManageActivity</string>
 
 </resources>

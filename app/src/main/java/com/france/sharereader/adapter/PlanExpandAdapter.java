@@ -5,6 +5,7 @@ package com.france.sharereader.adapter;
  */
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.france.sharereader.R;
+import com.france.sharereader.bean.Plan;
+import com.france.sharereader.dao.BaseDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,21 +23,22 @@ import java.util.List;
 public class PlanExpandAdapter extends BaseExpandableListAdapter{
 
     private List<String> groupData = new ArrayList<String>();
-    private List<List<String>> childData = new ArrayList<List<String>>();
+    private List<List<Plan>> childData = new ArrayList<List<Plan>>();
 
 //    private String ListPlan = "计划";
 //    private String[] ChildrenPlan = new String[]{"JAVA","ANDROID","PHP"};
     private Context mContext;
 
-    public PlanExpandAdapter(Context context) {
+    public PlanExpandAdapter(Context context,List<Plan> plans) {
         super();
         this.mContext = context;
         String ListPlan = "计划";
         groupData.add(ListPlan);
-        List<String> ChildrenPlan = new ArrayList<String>();
-        ChildrenPlan.add("JAVA");
-        ChildrenPlan.add("Android");
-        ChildrenPlan.add("PHP");
+        List<Plan> ChildrenPlan = new ArrayList<Plan>();
+        Log.i("zjx","plans.size()"+plans.size());
+        for( Plan item:plans){
+            ChildrenPlan.add(item);
+        }
         childData.add(ChildrenPlan);
     }
     @Override
@@ -118,7 +122,8 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
         } else {
             holder = (ChildrenHolder) convertView.getTag();
         }
-        holder.children_plan.setText(getChild(groupPosition, childPosition).toString());
+        Log.i("zjx","groupPosition:"+groupPosition+"childPosition:"+childPosition);
+        holder.children_plan.setText(((Plan)getChild(groupPosition, childPosition)).getTitle());
         return convertView;
     }
     @Override

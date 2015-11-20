@@ -4,17 +4,19 @@ import net.tsz.afinal.annotation.sqlite.Id;
 import net.tsz.afinal.annotation.sqlite.ManyToOne;
 import net.tsz.afinal.annotation.sqlite.Table;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2015/10/29.
  */
 @Table(name="plan")
-public class Plan {
+public class Plan implements Serializable{
     @Id(column="planId")
     private int planId;
     private String title;
     private String content;
     private String creatTime;
-    private Reminder reminder;
+    private String remindTime;
     @ManyToOne(column = "userId")
     private  User  user;
 
@@ -50,12 +52,12 @@ public class Plan {
         this.creatTime = creatTime;
     }
 
-    public Reminder getReminder() {
-        return reminder;
+    public String getRemindTime() {
+        return remindTime;
     }
 
-    public void setReminder(Reminder reminder) {
-        this.reminder = reminder;
+    public void setRemindTime(String remindTime) {
+        this.remindTime = remindTime;
     }
 
     public User getUser() {
