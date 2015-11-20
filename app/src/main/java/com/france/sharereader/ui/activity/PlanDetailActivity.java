@@ -120,6 +120,12 @@ public class PlanDetailActivity extends BaseActivity {
         });
     }
     @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(PlanDetailActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
             finish();

@@ -153,6 +153,11 @@ public class FileManageActivity extends BaseActivity {
                 // 再次更新ListView
                 inflateListView(currentFiles);
             }
+            else{
+                Intent intent =new Intent(FileManageActivity.this,MainActivity.class);
+                startActivity(intent);
+                FileManageActivity.this.finish();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

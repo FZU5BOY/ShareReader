@@ -27,11 +27,11 @@
         android:textSize="20dp"
         android:textColor="@color/gray"
         android:gravity="center"/>
-    <ListView
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topic_array">
-    </ListView>
+    </com.nhaarman.listviewanimations.itemmanipulation.DynamicListView>
     <Button
         android:id="@+id/add_topic_button"
         android:layout_width="wrap_content"

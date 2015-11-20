@@ -106,7 +106,7 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
     @Override
     public void onBackPressed() {
         book.setCurrentPage(pageNumber);
-        book.setProgress((int) (100 * ((double) pageNumber + 0.1) / (double) pageCount));
+        book.setProgress((int) (100 * ((double) pageNumber + 0.001) / (double) pageCount));
         baseDaoImpl.update(book);
         ShowLog("bookID"+book.getBookId()+" after update page:"+book.getCurrentPage());
         Intent intent =new Intent(PDFViewActivity.this,MainActivity.class);

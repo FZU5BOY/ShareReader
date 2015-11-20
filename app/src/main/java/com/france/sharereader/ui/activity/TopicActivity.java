@@ -25,6 +25,7 @@ import com.france.sharereader.bean.Theme;
 import com.france.sharereader.config.Config;
 import com.france.sharereader.ui.view.TopicMultipleChoiceDialog;
 import com.france.sharereader.util.LogUtil;
+import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 
 import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
@@ -49,11 +50,11 @@ public class TopicActivity extends BaseActivity {
     @ViewInject(id = R.id.lv_left_menu)
     private ListView lvLeftMenu;
     @ViewInject(id=R.id.topic_array)
-    private ListView topic_array;
+    private DynamicListView topic_array;
     private ActionBarDrawerToggle mDrawerToggle;
     private SimpleAdapter simpleAdapter;
     private TopicSelectAdapter topicSelectAdapter;
-
+    List<Theme> themes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,6 @@ public class TopicActivity extends BaseActivity {
         });
     }
     private void initTopicAdapter(){
-        List<Theme> themes = new ArrayList<>();
         themes=baseDaoImpl.FindAllTopic();
         if(themes.size()>0){
             noTopic.setVisibility(View.GONE);
@@ -92,8 +92,6 @@ public class TopicActivity extends BaseActivity {
     }
     //添加话题
     private void initAddTopic() {
-        List<Theme> mthemes = new ArrayList<>();
-        mthemes=baseDaoImpl.FindAllTopic();
         addTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,11 +99,19 @@ public class TopicActivity extends BaseActivity {
 
                     @Override
                     public void getMutilChoice(boolean[] isSelectItem) {
-
+                        boolean noTheme = true;
                         for (int i = 0; i < isSelectItem.length; i++) {
                             if (isSelectItem[i]){
-                                ShowLog("insert into db success?:" + baseDaoImpl.addTopic(Config.TOPICS[i]));
+                                noTheme = false;
+                                if(baseDaoImpl.addTopic(Config.TOPICS[i])){
+//                                    topic_array.insert(0,theme);
+                                    initTopicAdapter();
+                                }
                             }
+                        }
+                        if(!noTheme){
+                                noTopic.setVisibility(View.GONE);
+                                clickAdd.setVisibility(View.GONE);
                         }
                     }
                 });
