@@ -5,4 +5,6 @@
     <color name="Indigo_nav_color">#4675FF</color>
     <color name="white">#eeeeee</color>
     <color name="gray">#aaaaaa</color>
+    <color name="green">#FF12AA04</color>
+    <color name="title_blue">#ff48aaa1</color>
 </resources>
