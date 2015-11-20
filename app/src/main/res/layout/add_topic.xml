@@ -41,8 +41,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="150dp"
         android:textSize="28dp"
-        android:textColor="@color/white"
-        android:background="@color/green"/>
+        android:textColor="@color/white" />
 </LinearLayout>
     <!--侧滑菜单-->
     <LinearLayout

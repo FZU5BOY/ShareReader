@@ -55,6 +55,10 @@
             android:name=".ui.activity.TopicActivity"
             >
         </activity>
+        <activity
+            android:name=".ui.activity.TopicDetailActivity"
+            >
+        </activity>
 
     </application>
 

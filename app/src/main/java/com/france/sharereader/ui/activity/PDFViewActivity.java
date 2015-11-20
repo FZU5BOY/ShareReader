@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.france.sharereader.R;
@@ -11,6 +13,7 @@ import com.france.sharereader.bean.Book;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
 
+import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
 
 import java.io.File;
@@ -32,10 +35,14 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
     Integer pageNumber = 1;
     Book book=new Book();
     Integer pageCount = 1;
+
+    @ViewInject(id=R.id.enter_topic)
+    private Button enterTopic;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfview);
+        FinalActivity.initInjectedView(this);//实现IOC注解组件
         pdfView=(PDFView)findViewById(R.id.pdfView);
         pdfHeadTitle=(TextView)findViewById(R.id.book_name);
         pdfPageAndCount=(TextView)findViewById(R.id.page_cnc);
@@ -49,7 +56,16 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
             String filePath=book.getLocalPath();
             display(fileName, filePath, false);
         }
-
+        initClickEvents();
+    }
+  private void initClickEvents(){
+        enterTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PDFViewActivity.this, TopicDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void display(String fileName,String filePath, boolean jumpToFirstPage) {
         if (jumpToFirstPage) pageNumber = 1;
@@ -97,4 +113,5 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
         startActivity(intent);
         PDFViewActivity.this.finish();
     }
+
 }

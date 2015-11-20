@@ -63,6 +63,22 @@ public class TopicActivity extends BaseActivity {
         initLeftSlip();//侧滑
         initClickEvents();//注册事件
         initTopicAdapter();
+        enterTopic();
+    }
+    private void enterTopic(){
+        topic_array.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TopicActivity.this, TopicDetailActivity.class);
+                Bundle bundle = new Bundle();
+               // bundle.putSerializable("plan", (Plan) planExpandAdapter.getChild(groupPosition, childPosition));
+//				bundle.putString("title",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getTitle());
+//                bundle.putString("content",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getContent());
+                intent.putExtras(bundle);
+                startActivity(intent);
+                TopicActivity.this.finish();
+            }
+        });
     }
     private void initTopicAdapter(){
         List<Theme> themes = new ArrayList<>();
