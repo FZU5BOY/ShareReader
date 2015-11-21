@@ -34,13 +34,17 @@ public class BaseDaoImpl implements BaseDao {
             return bookList.get(0);
         }
         else{
+            List<Book> bookList2=new ArrayList<>();
+
             book.setBookName(pdfName);
             book.setLocalPath(pdfPath);
             book.setCreatTime(new Date().toString());
 //            book.setThemeId(-1);
 //            book.setProgress(1);
             db.save(book);
-            return book;
+            bookList2=db.findAll(Book.class);
+            if(bookList2.size()>0)return bookList2.get(bookList2.size()-1);
+            return null;
         }
     }
     @Override
