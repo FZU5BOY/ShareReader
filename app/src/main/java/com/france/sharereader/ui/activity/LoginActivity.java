@@ -5,4 +5,5 @@ package com.france.sharereader.ui.activity;
  */
 public class LoginActivity extends BaseActivity{
          //test github;
+        //test seccond;
 }
