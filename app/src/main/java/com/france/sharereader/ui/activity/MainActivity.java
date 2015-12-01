@@ -1,5 +1,7 @@
 package com.france.sharereader.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -58,6 +60,7 @@ public class MainActivity extends BaseActivity {
         initClickEvents();//注册事件
         initListPlan();//计划列表
         initPlanListClickEvents();//进入具体计划页面
+        deletePlan();
         initBookList();//书籍列表
     }
 
@@ -74,14 +77,36 @@ public class MainActivity extends BaseActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 LogUtil.ShowLog("Lareina_position:" + childPosition);
-				Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
-				Bundle bundle = new Bundle();
+                Intent intent = new Intent(MainActivity.this, PlanDetailActivity.class);
+                Bundle bundle = new Bundle();
                 bundle.putSerializable("plan", (Plan) planExpandAdapter.getChild(groupPosition, childPosition));
-//				bundle.putString("title",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getTitle());
-//                bundle.putString("content",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getContent());
-				intent.putExtras(bundle);
-				startActivity(intent);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 MainActivity.this.finish();
+                return true;
+            }
+        });
+    }
+    private void deletePlan () {
+        ListPlan.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setPositiveButton("删除", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                                // TODO Auto-generated method stub
+                                finish();
+                            }
+                        }).show();
+                int groupPos = (Integer) view.getTag(R.id.home_plan_title); //参数值是在setTag时使用的对应资源id号
+                int childPos = (Integer) view.getTag(R.id.text_plan);
+                if(childPos!=-1) {
+                    //根据groupPos及childPos判断你长按的是哪个父项下的哪个子项，然后做相应处理。
+                    Plan mplan = new Plan();
+                    mplan = (Plan) planExpandAdapter.getChild(groupPos, childPos);
+                    baseDaoImpl.delete(mplan);
+                }
                 return true;
             }
         });
@@ -184,11 +209,12 @@ public class MainActivity extends BaseActivity {
         List<Plan> plans=new ArrayList<>();
 
         plans=baseDaoImpl.FindAllPlan();
-        Log.i("zjx","plan size:"+plans.size());
+        Log.i("zjx", "plan size:" + plans.size());
         ListPlan.setGroupIndicator(null);
         planExpandAdapter = new PlanExpandAdapter(MainActivity.this,plans);
         ListPlan.setAdapter(planExpandAdapter);
     }
+
 
     private void initBookList() {
         List<Book> books=new ArrayList<Book>();

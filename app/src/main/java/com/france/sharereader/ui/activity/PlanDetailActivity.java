@@ -132,13 +132,4 @@ public class PlanDetailActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    private void editTitle(){
-        title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
 }
