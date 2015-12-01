@@ -23,7 +23,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.2'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     //读取pdf开源项目
-    provided 'com.googlecode.androidannotations:androidannotations:2.7.1'
     compile 'com.googlecode.androidannotations:androidannotations-api:2.7.1'
     compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
