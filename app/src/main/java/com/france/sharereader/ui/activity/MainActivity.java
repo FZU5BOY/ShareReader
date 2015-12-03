@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     private SimpleAdapter simpleAdapter;
     private BookBaseAdapter bookBaseAdapter;
     private PlanExpandAdapter planExpandAdapter;
-
+    List<Plan> plans;
 //    private SimpleAdapter bookSimpleAdapter;
 
     @Override
@@ -90,23 +90,29 @@ public class MainActivity extends BaseActivity {
     private void deletePlan () {
         ListPlan.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent,final  View view,final  int position, long id) {
                 new AlertDialog.Builder(MainActivity.this)
                         .setPositiveButton("删除", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
                                 // TODO Auto-generated method stub
-                                finish();
+//                                finish();
+                                int groupPos = (Integer) view.getTag(R.id.home_plan_title); //参数值是在setTag时使用的对应资源id号
+                                int childPos = (Integer) view.getTag(R.id.text_plan);
+//                                plans.remove(position);
+//                                planExpandAdapter.notifyAll();
+                                if(childPos!=-1) {
+                                    //根据groupPos及childPos判断你长按的是哪个父项下的哪个子项，然后做相应处理。
+                                    Plan mplan = new Plan();
+                                    mplan = (Plan) planExpandAdapter.getChild(groupPos, childPos);
+                                    baseDaoImpl.delete(mplan);
+                                }
+                                initListPlan();//计划列表
+                                ShowToast("删除成功");
                             }
                         }).show();
-                int groupPos = (Integer) view.getTag(R.id.home_plan_title); //参数值是在setTag时使用的对应资源id号
-                int childPos = (Integer) view.getTag(R.id.text_plan);
-                if(childPos!=-1) {
-                    //根据groupPos及childPos判断你长按的是哪个父项下的哪个子项，然后做相应处理。
-                    Plan mplan = new Plan();
-                    mplan = (Plan) planExpandAdapter.getChild(groupPos, childPos);
-                    baseDaoImpl.delete(mplan);
-                }
+
+//                initListPlan();//计划列表
                 return true;
             }
         });
@@ -206,7 +212,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initListPlan() {
-        List<Plan> plans=new ArrayList<>();
+        plans=new ArrayList<>();
 
         plans=baseDaoImpl.FindAllPlan();
         Log.i("zjx", "plan size:" + plans.size());
