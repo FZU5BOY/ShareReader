@@ -59,6 +59,10 @@
             android:name=".ui.activity.TopicDetailActivity"
             >
         </activity>
+        <activity
+            android:name=".ui.activity.CommentActivity"
+            >
+        </activity>
 
     </application>
 
