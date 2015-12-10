@@ -102,7 +102,7 @@ public class PlanDetailActivity extends BaseActivity {
                     plan.setTitle(title.getText().toString().trim());
                     plan.setContent(plan_content.getText().toString().trim());
                     plan.setRemindTime(display_time.getText().toString().trim());
-                    ShowLog("update db success?:" + baseDaoImpl.update(plan));
+                    ShowLog("update db success?" + baseDaoImpl.update(plan));
                 }
                 Intent intent = new Intent(PlanDetailActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -132,13 +132,4 @@ public class PlanDetailActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    private void editTitle(){
-        title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
 }

@@ -1,7 +1,9 @@
 package com.france.sharereader.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2015/11/13.
@@ -35,9 +38,6 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
 
     @ViewInject(id=R.id.enter_topic)
     private Button enterTopic;
-    @ViewInject(id=R.id.comment)
-    private Button comment;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,23 +57,12 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
             display(fileName, filePath, false);
         }
         initClickEvents();
-        commentClickEvent();
     }
   private void initClickEvents(){
         enterTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PDFViewActivity.this, TopicDetailActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-    private void commentClickEvent(){
-        comment.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PDFViewActivity.this,CommentActivity.class);
                 startActivity(intent);
             }
         });
