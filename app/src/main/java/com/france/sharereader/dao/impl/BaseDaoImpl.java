@@ -13,7 +13,6 @@ import net.tsz.afinal.FinalDb;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Administrator on 2015/10/30.
@@ -30,7 +29,7 @@ public class BaseDaoImpl implements BaseDao {
     public Book addPdf(String pdfName, String pdfPath) {
         Book book=new Book();
         List<Book> bookList=new ArrayList<>();
-        bookList=db.findAllByWhere(Book.class, "bookName='" + pdfName + "'");
+        bookList=db.findAllByWhere(Book.class,"bookName='"+pdfName+"'");
         if(bookList.size()>0){
             return bookList.get(0);
         }
@@ -73,11 +72,6 @@ public class BaseDaoImpl implements BaseDao {
     @Override
     public boolean save(Object o) {
         db.save(o);
-        return true;
-    }
-    @Override
-    public boolean delete(Object o){
-        db.delete(o);
         return true;
     }
 

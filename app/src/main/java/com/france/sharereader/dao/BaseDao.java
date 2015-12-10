@@ -25,5 +25,4 @@ public interface BaseDao {
      List<Plan> FindAllPlan();
      boolean addTopic(String topic);
      List<Theme> FindAllTopic();
-     boolean delete(Object o);
 }

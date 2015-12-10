@@ -90,12 +90,9 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
         if (convertView == null) {
             convertView =LayoutInflater.from(mContext).inflate(R.layout.plan_list_item,null);
             holder = new GroupHolder();
-            holder.list_plan = ((TextView) convertView.findViewById(R.id.home_plan_title));
+            holder.list_plan = ((TextView) convertView.findViewById(R.id.title));
             holder.clock = (ImageView) convertView.findViewById(R.id.img);
             convertView.setTag(holder);
-            convertView.setTag(R.id.home_plan_title,groupPosition);
-            convertView.setTag(R.id.text_plan,-1);
-           // convertView.setText(groupData.get(groupPosition));
         } else {
             holder = (GroupHolder) convertView.getTag();
         }
@@ -109,6 +106,7 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
    class GroupHolder{
         ImageView clock;
         TextView list_plan;
+        ImageView more;
     }
     @Override
     public View getChildView(int groupPosition, int childPosition,
@@ -121,8 +119,6 @@ public class PlanExpandAdapter extends BaseExpandableListAdapter{
             holder = new ChildrenHolder();
             holder.children_plan = ((TextView) convertView.findViewById(R.id.text_plan));
             convertView.setTag(holder);
-            convertView.setTag(R.id.home_plan_title,groupPosition);
-            convertView.setTag(R.id.text_plan,childPosition);
         } else {
             holder = (ChildrenHolder) convertView.getTag();
         }
