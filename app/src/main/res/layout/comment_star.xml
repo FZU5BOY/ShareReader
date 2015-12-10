@@ -10,6 +10,7 @@
         android:layout_height="300dp"
         android:layout_margin="10dp"
         android:gravity="top"
+        android:background="@drawable/shape"
         android:hint="@string/comm_hint" />
 
     <LinearLayout
