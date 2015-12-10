@@ -60,10 +60,9 @@
             >
         </activity>
         <activity
-            android:name=".ui.activity.CommentActivity"
+            android:name=".ui.activity.LoginActivity"
             >
         </activity>
-
     </application>
 
 </manifest>

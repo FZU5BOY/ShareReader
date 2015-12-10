@@ -4,7 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/custom_toolbar" />
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tl_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back_home"
+                android:layout_marginTop="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/white"
+
+                android:text="软件工程"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
