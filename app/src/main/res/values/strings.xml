@@ -16,6 +16,12 @@
     2.小记。日记软件有很多，这一款很中国风，毛笔字风格，从右至左的书写顺序，随便记一点啥，都像在写一首诗。
     3.留白。一款小巧的照片处理软件，可以将照片的一部分处理成纯白。
     4.美拍。随时随地分享小视频。</string>
-    <string name="delete"></string>
+    <string name="time_remind">提醒时间：</string>
+    <string name="delete">删除</string>
+    <string name="comm_hint">请输入评论……</string>
+    <string name="rate_stars">星级：</string>
+    <string name="submit_comm">提交</string>
+    <string name="title">请输入标题</string>
+    <string name="content_p">请输入计划……</string>
 
 </resources>
