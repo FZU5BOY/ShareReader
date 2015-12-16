@@ -61,6 +61,12 @@
         <activity
             android:name=".ui.activity.CommentActivity">
         </activity>
+        <activity
+            android:name=".ui.activity.LoginActivity">
+        </activity>
+        <activity
+            android:name=".ui.activity.RegisterActivity">
+        </activity>
         <receiver android:name=".Receiver.AlarmReceiver" android:process=":remote"/>
     </application>
 
