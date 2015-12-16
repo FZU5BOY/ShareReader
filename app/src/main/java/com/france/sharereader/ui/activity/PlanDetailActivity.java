@@ -129,6 +129,8 @@ public class PlanDetailActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
             finish();
+            Intent intent = new Intent(PlanDetailActivity.this, MainActivity.class);
+            startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
     }
