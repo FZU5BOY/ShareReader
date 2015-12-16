@@ -1,60 +1,54 @@
 package com.france.sharereader.bean;
 
-import net.tsz.afinal.annotation.sqlite.Id;
-import net.tsz.afinal.annotation.sqlite.OneToMany;
-import net.tsz.afinal.annotation.sqlite.Table;
-import net.tsz.afinal.db.sqlite.OneToManyLazyLoader;
+
+import cn.bmob.im.bean.BmobChatUser;
 
 /**
  * Created by Administrator on 2015/10/29.
  */
-@Table(name="user")
-public class User {
-    @Id(column="userId")
-    private String userId;
-    private String username;
-    private String password;
-    private String email;
-    @OneToMany(manyColumn = "userId")
-    private OneToManyLazyLoader<User ,Plan> plan;
+public class User extends BmobChatUser {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    /**
+     * //显示数据拼音的首字母
+     */
+    private String sortLetters;
 
-    public String getUserId() {
-        return userId;
+    /**
+     * //性别-true-男
+     */
+    private Boolean sex;
+
+    private Blog blog;
+
+
+    private Integer hight;
+
+
+    public Blog getBlog() {
+        return blog;
     }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
-
-    public String getUsername() {
-        return username;
+    public Integer getHight() {
+        return hight;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setHight(Integer hight) {
+        this.hight = hight;
     }
-
-    public String getPassword() {
-        return password;
+    public Boolean getSex() {
+        return sex;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
-
-    public String getEmail() {
-        return email;
+    public String getSortLetters() {
+        return sortLetters;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public OneToManyLazyLoader<User, Plan> getPlan() {
-        return plan;
-    }
-
-    public void setPlan(OneToManyLazyLoader<User, Plan> plan) {
-        this.plan = plan;
+    public void setSortLetters(String sortLetters) {
+        this.sortLetters = sortLetters;
     }
 }

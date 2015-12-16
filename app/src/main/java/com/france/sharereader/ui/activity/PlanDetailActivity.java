@@ -79,7 +79,7 @@ public class PlanDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 DateTimePickDialogUtil dateTimePicKDialog = new DateTimePickDialogUtil(
                         PlanDetailActivity.this, initDateTime);
-                dateTimePicKDialog.dateTimePicKDialog(display_time);
+                dateTimePicKDialog.dateTimePicKDialog(display_time);//绑定组件 ;显示在上面
             }
         });
         clock.setOnClickListener(new View.OnClickListener() {

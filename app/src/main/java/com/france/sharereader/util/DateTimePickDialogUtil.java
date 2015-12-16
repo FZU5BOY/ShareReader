@@ -7,16 +7,24 @@ package com.france.sharereader.util;
         import java.util.Calendar;
 
         import android.app.Activity;
+        import android.app.AlarmManager;
         import android.app.AlertDialog;
+        import android.app.PendingIntent;
+        import android.content.Context;
         import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.util.Log;
         import android.widget.DatePicker;
         import android.widget.DatePicker.OnDateChangedListener;
         import android.widget.EditText;
         import android.widget.LinearLayout;
         import android.widget.TimePicker;
         import android.widget.TimePicker.OnTimeChangedListener;
+        import android.widget.Toast;
 
         import com.france.sharereader.R;
+        import com.france.sharereader.Receiver.AlarmReceiver;
+        import com.france.sharereader.ui.activity.MainActivity;
 
 /**
  * 日期时间选择控件 使用方法： private EditText inputDate;
@@ -44,7 +52,9 @@ public class DateTimePickDialogUtil  implements OnDateChangedListener,
     private String dateTime;
     private String initDateTime;
     private Activity activity;
-
+    private AlarmManager alarmManager=null;
+    // 获得日历实例
+    private Calendar calendar;
     /**
      * 日期时间弹出选择框构造函数
      *
@@ -56,10 +66,11 @@ public class DateTimePickDialogUtil  implements OnDateChangedListener,
     public DateTimePickDialogUtil(Activity activity, String initDateTime) {
         this.activity = activity;
         this.initDateTime = initDateTime;
+        alarmManager=(AlarmManager)activity.getSystemService(Context.ALARM_SERVICE);
     }
 
     public void init(DatePicker datePicker, TimePicker timePicker) {
-        Calendar calendar = Calendar.getInstance();
+       calendar = Calendar.getInstance();
         if (!(null == initDateTime || "".equals(initDateTime))) {
             calendar = this.getCalendarByInintData(initDateTime);
         } else {
@@ -98,6 +109,11 @@ public class DateTimePickDialogUtil  implements OnDateChangedListener,
                 .setPositiveButton("设置", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         inputDate.setText(dateTime);
+                        Intent intent = new Intent(activity, AlarmReceiver.class);    //创建Intent对象
+                        PendingIntent pi = PendingIntent.getBroadcast(activity, 0, intent, 0);    //创建PendingIntent
+                        Log.i("zjx","calendar.getTimeInMillis()" + calendar.getTimeInMillis());
+                        alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pi);
+                        Toast.makeText(activity, "闹钟设置成功", Toast.LENGTH_LONG).show();//提示用户
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -116,8 +132,7 @@ public class DateTimePickDialogUtil  implements OnDateChangedListener,
 
     public void onDateChanged(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-        // 获得日历实例
-        Calendar calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
 
         calendar.set(datePicker.getYear(), datePicker.getMonth(),
                 datePicker.getDayOfMonth(), timePicker.getCurrentHour(),

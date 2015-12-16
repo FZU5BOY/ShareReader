@@ -10,6 +10,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.france.sharereader.R;
+import com.france.sharereader.config.Config;
+
+import cn.bmob.im.BmobChat;
 
 
 public class SplashActivity extends Activity {
@@ -26,7 +29,9 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.splash);
         //可设置调试模式，当为true的时候，会在logcat的BmobChat下输出一些日志，包括推送服务是否正常运行，如果服务端返回错误，也会一并打印出来。方便开发者调试
-
+        BmobChat.DEBUG_MODE = true;
+        //BmobIM SDK初始化--只需要这一段代码即可完成初始化
+        BmobChat.getInstance(this).init(Config.applicationId);
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
