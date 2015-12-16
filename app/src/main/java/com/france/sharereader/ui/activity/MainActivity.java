@@ -32,6 +32,8 @@ import net.tsz.afinal.annotation.view.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.im.BmobUserManager;
+
 public class MainActivity extends BaseActivity {
     //声明相关变量
     @ViewInject(id = R.id.tl_custom)
@@ -45,12 +47,15 @@ public class MainActivity extends BaseActivity {
     private ExpandableListView ListPlan;
     @ViewInject(id=R.id.login)
     private TextView login;
+    @ViewInject(id=R.id.userid)
+    private TextView userid;
     @ViewInject(id = R.id.mybook_list)
     private ListView bookList;
     private SimpleAdapter simpleAdapter;
     private BookBaseAdapter bookBaseAdapter;
     private PlanExpandAdapter planExpandAdapter;
     List<Plan> plans;
+
 //    private SimpleAdapter bookSimpleAdapter;
 
     @Override
@@ -143,13 +148,22 @@ public class MainActivity extends BaseActivity {
         });
     }
     private void initlogin(){
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(userManager.getCurrentUser() == null) {
+            userid.setVisibility(View.GONE);
+            login.setVisibility(View.VISIBLE);
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else {
+            userid.setVisibility(View.VISIBLE);
+            login.setVisibility(View.GONE);
+            userid.setText(userManager.getCurrentUser().getUsername());
+        }
     }
 
     @Override

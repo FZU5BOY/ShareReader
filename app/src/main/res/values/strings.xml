@@ -24,5 +24,10 @@
     <string name="submit_comm">提交</string>
     <string name="title">请输入标题</string>
     <string name="content_p">请输入计划……</string>
-
+    <string name="toast_error_username_null">用户名不能为空</string>
+    <string name="toast_error_password_null">密码不能为空</string>
+    <string name="toast_register_all_error">请填写完整注册信息</string>
+    <string name="toast_register_pswlenth_error">密码应大于等于6位</string>
+    <string name="toast_register_psw_unequal_error">两次输入密码不同</string>
+    <string name="toast_register_success">注册成功</string>
 </resources>

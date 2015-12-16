@@ -21,18 +21,7 @@ public class User extends BmobChatUser {
      */
     private Boolean sex;
 
-    private Blog blog;
-
-
     private Integer hight;
-
-
-    public Blog getBlog() {
-        return blog;
-    }
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
     public Integer getHight() {
         return hight;
     }

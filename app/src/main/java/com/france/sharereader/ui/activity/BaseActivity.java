@@ -9,12 +9,16 @@ import android.widget.Toast;
 import com.france.sharereader.dao.BaseDao;
 import com.france.sharereader.dao.impl.BaseDaoImpl;
 
+import cn.bmob.im.BmobUserManager;
+
 public class BaseActivity extends ActionBarActivity {
+    BmobUserManager userManager;
     public BaseDao baseDaoImpl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseDaoImpl=new BaseDaoImpl(BaseActivity.this);
+        userManager = BmobUserManager.getInstance(this);
     }
 
     Toast mToast;

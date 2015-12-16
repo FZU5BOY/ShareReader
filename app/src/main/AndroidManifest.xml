@@ -13,11 +13,57 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <permission
+        android:name="cn.bmob.permission.push"
+        android:protectionLevel="normal" >
+    </permission>
+    <uses-permission android:name="cn.bmob.permission.push" />
 
     <receiver
         android:name=".ui.activity.alarmreceiver"
         android:process=":remote" />
+    <!-- IM聊天所需的Push start-->
+    <service
+        android:name="cn.bmob.push.lib.service.PushService"
+        android:exported="true"
+        android:label="PushService"
+        android:permission="cn.bmob.permission.push"
+        android:process="cn.bmob.push" >
+        <intent-filter>
+            <action android:name="cn.bmob.push.lib.service.PushService" />
+        </intent-filter>
+    </service>
 
+    <receiver android:name="cn.bmob.push.PushReceiver" >
+        <intent-filter android:priority="2147483647" > <!-- 优先级加最高 -->
+            <!-- 系统启动完成后会调用 -->
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+            <!-- 解锁完成后会调用 -->
+            <action android:name="android.intent.action.USER_PRESENT" />
+            <!-- 监听网络连通性 -->
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        </intent-filter>
+    </receiver>
+    <!--聊天消息接收器 -->
+    <receiver android:name=".MyMessageReceiver" >
+        <intent-filter>
+            <action android:name="cn.bmob.push.action.MESSAGE" />
+        </intent-filter>
+    </receiver>
+
+    <!-- IM聊天所需的Push end-->
+
+    <!-- 个性功能中的启动定时检测服务，可选功能 -->
+    <service android:name="cn.bmob.im.poll.BmobPollService">
+        <intent-filter>
+            <action android:name="cn.bmob.im.service.BmobPollService"/>
+        </intent-filter>
+    </service>
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"

@@ -49,7 +49,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_password_again"
             style="@style/Register_Edit"
             android:inputType="textPassword"
             android:hint="确认密码" />
