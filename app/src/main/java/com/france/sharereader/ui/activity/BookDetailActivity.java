@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.france.sharereader.R;
+import com.france.sharereader.config.Config;
 
 import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.FinalHttp;
@@ -27,32 +28,35 @@ public class BookDetailActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.book_detail);
         FinalActivity.initInjectedView(this);//实现IOC注解组件
-        setContentView(R.layout.topic_detail);
         book_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FinalHttp fh = new FinalHttp();
                 //调用download方法开始下载
                 HttpHandler handler = fh.download("http://120.24.251.94:8888/ShareRead/file/README.md", //这里是下载的路径
-                        true,//true:断点续传 false:不断点续传（全新下载）
-                        "/mnt/sdcard/ShareReader/download/", //这是保存到本地的路径
-                        new AjaxCallBack() {
+                        //true:断点续传 false:不断点续传（全新下载）
+                        Config.extern+"/ShareReader/download/README.md", //这是保存到本地的路径
+                        true,
+                        new AjaxCallBack<File>() {
                             @Override
                             public void onLoading(long count, long current) {
                                 Log.i("zjx", "下载进度：" + current + "/" + count);
                             }
                             @Override
-                            public void onSuccess(File t) {
-//                                textView.setText(t==null?"null":);
-                                Log.i("zjx","");
+                            public void onSuccess(File f) {
+                                Log.i("zjx",f == null ? "null" :f.getAbsoluteFile().toString());
                             }
-
+                            @Override
+                            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                                Log.i("zjx","下载失败"+strMsg);
+                            }
+                            @Override
+                            public void onStart() {
+                                Log.i("zjx","开始下载");
+                            }
                         });
-
-
-                //调用stop()方法停止下载
-                handler.stop();
             }
         });
     }

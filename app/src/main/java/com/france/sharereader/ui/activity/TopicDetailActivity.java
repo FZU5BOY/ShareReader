@@ -18,13 +18,13 @@ public class TopicDetailActivity extends BaseActivity{
     @ViewInject(id = R.id.tl_custom)
     private Toolbar toolbar;
     @ViewInject(id=R.id.topic_book1)
-    private ImageView topic_book1;
+    private ImageView topic_book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FinalActivity.initInjectedView(this);//实现IOC注解组件
         setContentView(R.layout.topic_detail);
-        topic_book1.setOnClickListener(new View.OnClickListener() {
+        FinalActivity.initInjectedView(this);//实现IOC注解组件 放setContentView后
+        topic_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
              Intent intent=new Intent(TopicDetailActivity.this,BookDetailActivity.class);
