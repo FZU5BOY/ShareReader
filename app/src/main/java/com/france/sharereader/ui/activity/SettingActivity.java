@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.france.sharereader.R;
 
@@ -18,6 +19,8 @@ import cn.bmob.v3.BmobUser;
 public class SettingActivity extends Activity {
     @ViewInject(id=R.id.btn_logout)
     private Button btn_logout;
+    @ViewInject(id=R.id.tv_set_name)
+    private TextView tv_set_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,15 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 exitUser();
-                Intent intent = new Intent(SettingActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                startActivity(intent);
+                SettingActivity.this.finish();
+            }
+        });
+        tv_set_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, UpdateInfoActivity.class);
                 startActivity(intent);
                 SettingActivity.this.finish();
             }
