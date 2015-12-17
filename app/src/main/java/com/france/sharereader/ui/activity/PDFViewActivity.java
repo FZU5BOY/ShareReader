@@ -74,6 +74,9 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PDFViewActivity.this,CommentActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("bookname",book.getBookName());
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

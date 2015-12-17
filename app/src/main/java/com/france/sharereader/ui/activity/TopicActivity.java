@@ -51,6 +51,10 @@ public class TopicActivity extends BaseActivity {
     private ListView lvLeftMenu;
     @ViewInject(id=R.id.topic_array)
     private DynamicListView topic_array;
+    @ViewInject(id=R.id.login)
+    private TextView login;
+    @ViewInject(id=R.id.userid)
+    private TextView userid;
     private ActionBarDrawerToggle mDrawerToggle;
     private SimpleAdapter simpleAdapter;
     private TopicSelectAdapter topicSelectAdapter;
@@ -65,6 +69,7 @@ public class TopicActivity extends BaseActivity {
         initClickEvents();//注册事件
         initTopicAdapter();
         enterTopic();
+        initlogin();
     }
     private void enterTopic(){
         topic_array.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,7 +77,7 @@ public class TopicActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TopicActivity.this, TopicDetailActivity.class);
                 Bundle bundle = new Bundle();
-               // bundle.putSerializable("plan", (Plan) planExpandAdapter.getChild(groupPosition, childPosition));
+                // bundle.putSerializable("plan", (Plan) planExpandAdapter.getChild(groupPosition, childPosition));
 //				bundle.putString("title",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getTitle());
 //                bundle.putString("content",((Plan)planExpandAdapter.getChild(groupPosition, childPosition)).getContent());
                 intent.putExtras(bundle);
@@ -204,5 +209,23 @@ public class TopicActivity extends BaseActivity {
                 }
             }
         });
+    }
+    private void initlogin(){
+        if(userManager.getCurrentUser() == null) {
+            userid.setVisibility(View.GONE);
+            login.setVisibility(View.VISIBLE);
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TopicActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else {
+            userid.setVisibility(View.VISIBLE);
+            login.setVisibility(View.GONE);
+            userid.setText(userManager.getCurrentUser().getUsername());
+        }
     }
 }
