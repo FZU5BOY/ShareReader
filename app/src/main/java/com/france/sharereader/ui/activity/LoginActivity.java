@@ -32,7 +32,6 @@ public class LoginActivity extends BaseActivity{
     @ViewInject(id=R.id.btn_login)
     private Button btn_login;
     private String name,password;
-    BmobUserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,18 +1,38 @@
 package com.france.sharereader.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.france.sharereader.R;
 
+import net.tsz.afinal.FinalActivity;
+import net.tsz.afinal.annotation.view.ViewInject;
+
+import cn.bmob.v3.BmobUser;
+
 public class SettingActivity extends Activity {
+    @ViewInject(id=R.id.btn_logout)
+    private Button btn_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        FinalActivity.initInjectedView(this);//实现IOC注解组件
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exitUser();
+                Intent intent = new Intent(SettingActivity.this,LoginActivity.class);
+                startActivity(intent);
+                SettingActivity.this.finish();
+            }
+        });
     }
 
     @Override
@@ -34,5 +54,9 @@ public class SettingActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void exitUser(){
+        BmobUser.logOut(this);   //清除缓存用户对象
+        BmobUser currentUser = BmobUser.getCurrentUser(this); // 现在的currentUser是null了
     }
 }
