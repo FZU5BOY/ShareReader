@@ -9,4 +9,5 @@
     <color name="title_blue">#ff48aaa1</color>
     <color name="black">#ff000100</color>
     <color name="blue">#2c35f2</color>
+    <color name="theme_bg_color">#f0f2f5</color>
 </resources>

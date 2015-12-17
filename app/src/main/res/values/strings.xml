@@ -9,6 +9,7 @@
     <string name="search_hint">搜索..</string>
     <string name="add_plan">新增计划</string>
     <string name="add_book">新增书籍</string>
+    <string name="personal_profile">资料修改</string>
     <string name="save">保存</string>
     <string name="download">下载</string>
     <string name="title_activity_file_manage">FileManageActivity</string>
@@ -26,4 +27,10 @@
     <string name="toast_register_pswlenth_error">密码应大于等于6位</string>
     <string name="toast_register_psw_unequal_error">两次输入密码不同</string>
     <string name="toast_register_success">注册成功</string>
+
+    <string name="add_avatar">头像</string>
+    <string name="add_nick">昵称</string>
+    <string name="add_name">账号</string>
+    <string name="add_name_hint">请输入昵称&#8230;</string>
+    <string name="add_gender">性别</string>
 </resources>
