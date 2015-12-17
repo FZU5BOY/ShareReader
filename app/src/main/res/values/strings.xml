@@ -12,6 +12,7 @@
     <string name="save">保存</string>
     <string name="download">下载</string>
     <string name="title_activity_file_manage">FileManageActivity</string>
+    <string name="title_activity_alarm">AlarmActivity</string>
     <string name="time_remind">提醒时间：</string>
     <string name="delete">删除</string>
     <string name="comm_hint">请输入评论……</string>
