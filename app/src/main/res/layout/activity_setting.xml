@@ -193,7 +193,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="位置分享"
+            android:text="笔记分享"
             android:id="@+id/button4"
             android:paddingLeft="10dp"
             android:gravity="left|center_vertical"
@@ -240,6 +240,8 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_marginBottom="30dp"
+        android:layout_marginTop="45dp"
+
         android:text="退出登录" />
 
 </LinearLayout>

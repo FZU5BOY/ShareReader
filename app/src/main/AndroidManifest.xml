@@ -18,16 +18,18 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <permission
         android:name="cn.bmob.permission.push"
         android:protectionLevel="normal" >
     </permission>
+
     <uses-permission android:name="cn.bmob.permission.push" />
 
     <receiver
         android:name=".ui.activity.alarmreceiver"
         android:process=":remote" />
-    <!-- IM聊天所需的Push start-->
+    <!-- IM聊天所需的Push start -->
     <service
         android:name="cn.bmob.push.lib.service.PushService"
         android:exported="true"
@@ -49,21 +51,23 @@
             <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
         </intent-filter>
     </receiver>
-    <!--聊天消息接收器 -->
+    <!-- 聊天消息接收器 -->
     <receiver android:name=".MyMessageReceiver" >
         <intent-filter>
             <action android:name="cn.bmob.push.action.MESSAGE" />
         </intent-filter>
     </receiver>
 
-    <!-- IM聊天所需的Push end-->
+    <!-- IM聊天所需的Push end -->
+
 
     <!-- 个性功能中的启动定时检测服务，可选功能 -->
-    <service android:name="cn.bmob.im.poll.BmobPollService">
+    <service android:name="cn.bmob.im.poll.BmobPollService" >
         <intent-filter>
-            <action android:name="cn.bmob.im.service.BmobPollService"/>
+            <action android:name="cn.bmob.im.service.BmobPollService" />
         </intent-filter>
     </service>
+
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
@@ -104,14 +108,20 @@
             android:label="@string/title_activity_alarm" >
             android:name=".ui.activity.LoginActivity">
         </activity>
-        <activity
-            android:name=".ui.activity.CommentActivity">
+        <activity android:name=".ui.activity.CommentActivity" >
         </activity>
-        <activity
-            android:name=".ui.activity.LoginActivity">
+        <activity android:name=".ui.activity.LoginActivity" >
         </activity>
+        <activity android:name=".ui.activity.RegisterActivity" >
+        </activity>
+
+        <receiver
+            android:name=".Receiver.AlarmReceiver"
+            android:process=":remote" />
+
         <activity
-            android:name=".ui.activity.RegisterActivity">
+            android:name=".ui.activity.SettingActivity"
+            android:label="@string/title_activity_setting" >
         </activity>
         <activity
             android:name=".ui.activity.SearchActivity">

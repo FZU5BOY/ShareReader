@@ -33,4 +33,5 @@
     <string name="add_name">账号</string>
     <string name="add_name_hint">请输入昵称&#8230;</string>
     <string name="add_gender">性别</string>
+    <string name="title_activity_setting">SettingActivity</string>
 </resources>

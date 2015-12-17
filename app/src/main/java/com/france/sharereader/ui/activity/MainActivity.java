@@ -136,6 +136,10 @@ public class MainActivity extends BaseActivity {
                     Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(intent);
                 }
+                if (position == 3) {
+                    Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                    startActivity(intent);
+                }
                 if (position == 2) {
                     Intent intent = new Intent(MainActivity.this, TopicActivity.class);
                     startActivity(intent);
