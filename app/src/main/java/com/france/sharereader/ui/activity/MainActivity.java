@@ -132,6 +132,10 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LogUtil.ShowLog("position:" + position);
+                if (position == 3) {
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                }
                 if (position == 2) {
                     Intent intent = new Intent(MainActivity.this, TopicActivity.class);
                     startActivity(intent);

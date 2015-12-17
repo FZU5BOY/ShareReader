@@ -14,11 +14,12 @@ import java.util.Map;
 public class LeftMenuAdapter {
 
     private List<Map<String,Object>> leftMenus = new ArrayList<Map<String,Object>>();
-    private String[] names={"主页","计划","话题","设置"};
+    private String[] names={"主页","计划","话题","搜索","设置"};
     private int[] imgIds={
             R.drawable.iconfont_home,
             R.drawable.iconfont_plan,
             R.drawable.iconfont_info,
+            R.drawable.iconfont_search,
             R.drawable.iconfont_set};
     public SimpleAdapter getAdapter(Context context){
         initData();

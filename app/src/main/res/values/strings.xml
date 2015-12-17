@@ -12,12 +12,6 @@
     <string name="save">保存</string>
     <string name="download">下载</string>
     <string name="title_activity_file_manage">FileManageActivity</string>
-    <string name="hot_topic">• 国内有哪些非常有设计感的 app？
-  --1.开眼。每日推荐5个小视频，我基本每晚都看，世界那么大，一起来看看吧。
-    2.小记。日记软件有很多，这一款很中国风，毛笔字风格，从右至左的书写顺序，随便记一点啥，都像在写一首诗。
-    3.留白。一款小巧的照片处理软件，可以将照片的一部分处理成纯白。
-    4.美拍。随时随地分享小视频。</string>
-    <string name="title_activity_alarm">AlarmActivity</string>
     <string name="time_remind">提醒时间：</string>
     <string name="delete">删除</string>
     <string name="comm_hint">请输入评论……</string>
