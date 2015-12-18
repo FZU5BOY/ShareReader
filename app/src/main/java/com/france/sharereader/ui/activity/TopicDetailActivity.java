@@ -46,19 +46,5 @@ public class TopicDetailActivity extends BaseActivity{
                 startActivity(intent);
             }
         });
-        topic_book2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(TopicDetailActivity.this,BookDetailActivity.class);
-                startActivity(intent);
-            }
-        });
-        topic_book3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(TopicDetailActivity.this,BookDetailActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
