@@ -24,6 +24,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/ic_back"/>
             <TextView
+                android:id="@+id/topic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -52,35 +53,35 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/topic1"
-        android:text="topic1"/>
+        android:text="12306 外包给阿里巴巴、IBM 等大企业做是否可行？"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/topic2"
-        android:text="topic2"/>
+        android:text="为什么很多看起来不是很复杂的网站，比如 Facebook 需要大量顶尖高手来开发？"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/topic3"
-        android:text="topic3"/>
+        android:text="Web 建站技术中，HTML、HTML5、XHTML、CSS、SQL、JavaScript、PHP、ASP.NET、Web Services 是什么？"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/topic4"
-        android:text="topic4"/>
+        android:text="哪个学校的网站首页最好看？"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/topic5"
-        android:text="topic5"/>
+        android:text="如何在四小时内学会用 Ai 做 UI？"/>
 </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -97,7 +98,14 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:layout_marginTop="5dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
     <ImageView
         android:layout_width="match_parent"
         android:id="@+id/topic_book1"
@@ -105,18 +113,53 @@
         android:layout_marginLeft="2dp"
         android:src="@drawable/book1"
         android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="构建之法"
+            />
+        </LinearLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:id="@+id/topic_book2"
         android:layout_marginLeft="2dp"
         android:src="@drawable/book2"
         android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人月神话"
+            android:textSize="20sp"
+            />
+            </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginLeft="2dp"
+        android:id="@+id/topic_book3"
         android:src="@drawable/book3"
         android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="软件工程"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
 </LinearLayout>
     <View
         android:layout_width="match_parent"

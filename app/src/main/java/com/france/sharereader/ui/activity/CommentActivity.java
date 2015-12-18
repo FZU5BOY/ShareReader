@@ -39,6 +39,7 @@ public class CommentActivity extends BaseActivity {
     @ViewInject(id=R.id.rate_stars)
     private RatingBar rate_star;
     private String bookname;
+    private String bookTopic;
     private String commContent;
     private double rateStars;
     BookCommentGrade b = new BookCommentGrade();
@@ -55,6 +56,7 @@ public class CommentActivity extends BaseActivity {
         Bundle bundle = this.getIntent().getExtras();
         if(bundle!=null) {
            bookname=bundle.getString("bookname");
+           bookTopic=bundle.getString("bookTopic");
         }
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +120,7 @@ public class CommentActivity extends BaseActivity {
         b.setBookName(bookname);
         b.setCount(1);
         b.seteGrade(rateStars);
+        b.setTopic(bookTopic);
         b.save(this, new SaveListener() {
             @Override
             public void onSuccess() {

@@ -37,7 +37,7 @@ public class BookDetailActivity extends BaseActivity{
                 //调用download方法开始下载
                 HttpHandler handler = fh.download("http://120.24.251.94:8888/ShareRead/file/README.md", //这里是下载的路径
                         //true:断点续传 false:不断点续传（全新下载）
-                        Config.extern+"/ShareReader/download/README.md", //这是保存到本地的路径
+                        Config.extern+"/ShareReader/", //这是保存到本地的路径
                         true,
                         new AjaxCallBack<File>() {
                             @Override

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.france.sharereader.R;
 import com.france.sharereader.bean.Book;
+import com.france.sharereader.config.Config;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
 
@@ -63,7 +64,10 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
         enterTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(PDFViewActivity.this, TopicDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("bookTopicID", book.getThemeId());
                 startActivity(intent);
             }
         });
@@ -76,6 +80,7 @@ public class PDFViewActivity extends BaseActivity implements OnPageChangeListene
                 Intent intent = new Intent(PDFViewActivity.this,CommentActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("bookname",book.getBookName());
+                bundle.putString("bookTopic", Config.TOPICS[book.getThemeId()]);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
