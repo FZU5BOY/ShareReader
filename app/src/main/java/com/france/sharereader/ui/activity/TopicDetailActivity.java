@@ -1,6 +1,7 @@
 package com.france.sharereader.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -27,6 +28,16 @@ public class TopicDetailActivity extends BaseActivity{
     private ImageView topic_book3;
     @ViewInject(id=R.id.topic_name)
     private TextView topicName;
+    @ViewInject(id=R.id.topic1)
+    private TextView zhihu1;
+    @ViewInject(id=R.id.topic2)
+    private TextView zhihu2;
+    @ViewInject(id=R.id.topic3)
+    private TextView zhihu3;
+    @ViewInject(id=R.id.topic4)
+    private TextView zhihu4;
+    @ViewInject(id=R.id.topic5)
+    private TextView zhihu5;
     int bookTopicID=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +57,28 @@ public class TopicDetailActivity extends BaseActivity{
                 startActivity(intent);
             }
         });
+        zhihu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoBrowser("http://www.zhihu.com/question/22451397");
+            }
+        });
+        zhihu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoBrowser("http://www.zhihu.com/question/20303645");
+            }
+        });
+        zhihu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoBrowser("http://www.zhihu.com/question/22689579");
+            }
+        });
+    }
+    private void gotoBrowser(String s){
+        Uri uri = Uri.parse(s);
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        startActivity(intent);
     }
 }

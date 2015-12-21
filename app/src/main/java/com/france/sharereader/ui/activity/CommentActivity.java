@@ -125,13 +125,13 @@ public class CommentActivity extends BaseActivity {
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
-                ShowToast("添加均值表成功");
+                ShowToast("添加评论成功");
             }
 
             @Override
             public void onFailure(int code, String msg) {
                 // TODO Auto-generated method stub
-                ShowToast("创建数据失败：" + msg);
+                ShowToast("创建评论失败：" + msg);
             }
         });
     }

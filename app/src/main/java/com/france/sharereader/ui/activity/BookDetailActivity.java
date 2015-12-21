@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.france.sharereader.R;
+import com.france.sharereader.bean.BookComment;
+import com.france.sharereader.bean.BookCommentGrade;
 import com.france.sharereader.config.Config;
 
 import net.tsz.afinal.FinalActivity;
@@ -21,13 +24,22 @@ import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.HttpHandler;
 
 import java.io.File;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by Administrator on 2015/11/20.
  */
 public class BookDetailActivity extends BaseActivity{
+    private int count;
+    private double egrade;
+    private String comment;
     @ViewInject(id = R.id.book_download)
     private Button book_download;
+    @ViewInject(id=R.id.comment)
+    TextView viewComment;
     private ProgressDialog progressDialog;
     // 记录进度对话框的完成百分比
     int progressStatus = 0;
@@ -98,5 +110,51 @@ public class BookDetailActivity extends BaseActivity{
                         });
             }
         });
+    }
+    private void queryComent() {
+        BmobQuery<BookComment> bmobQuery = new BmobQuery<BookComment>();
+        bmobQuery.findObjects(this, new FindListener<BookComment>() {
+            @Override
+            public void onSuccess(List<BookComment> object) {
+                // TODO Auto-generated method stub
+                if(object.size()>0 ) {
+                    comment = object.get(0).getCommentContent();
+                    ShowToast("查询成功:" + comment);
+                    viewComment.setText(comment);
+                }
+                else{
+                    ShowLog("数据空");
+                }
+            }
+
+            @Override
+            public void onError(int code, String msg) {
+                // TODO Auto-generated method stub
+                ShowToast("查询失败：" + msg);
+            }
+        });
+    }
+
+    private void queryCommentGrade(){
+        BmobQuery<BookCommentGrade> bmobQuery = new BmobQuery<BookCommentGrade>();
+        bmobQuery.findObjects(this, new FindListener<BookCommentGrade>() {
+            @Override
+            public void onSuccess(List<BookCommentGrade> object) {
+                // TODO Auto-generated method stub
+                for (BookCommentGrade bookCommentGrade : object) {
+                    egrade = bookCommentGrade.geteGrade();
+                }
+                //ShowToast("查询成功:" + count + "___" + egrade);
+
+            }
+
+            @Override
+            public void onError(int code, String msg) {
+                // TODO Auto-generated method stub
+                //ShowToast("查询失败：" + msg);
+
+            }
+        });
+
     }
 }
