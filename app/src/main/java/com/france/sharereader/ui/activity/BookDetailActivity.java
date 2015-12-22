@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.france.sharereader.R;
@@ -40,6 +41,8 @@ public class BookDetailActivity extends BaseActivity{
     private Button book_download;
     @ViewInject(id=R.id.comment)
     TextView viewComment;
+    @ViewInject(id=R.id.bookDetail_stars)
+    private RatingBar rate_star;
     private ProgressDialog progressDialog;
     // 记录进度对话框的完成百分比
     int progressStatus = 0;
@@ -48,6 +51,11 @@ public class BookDetailActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_detail);
         FinalActivity.initInjectedView(this);//实现IOC注解组件
+        final ProgressDialog progress = new ProgressDialog(
+                BookDetailActivity.this);
+        progress.setMessage("正在刷新...");
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
         final Handler updateHandler = new Handler()
         {
             @Override
@@ -110,16 +118,19 @@ public class BookDetailActivity extends BaseActivity{
                         });
             }
         });
+        queryComent();
+        queryCommentGrade();
     }
     private void queryComent() {
         BmobQuery<BookComment> bmobQuery = new BmobQuery<BookComment>();
+        bmobQuery.addQueryKeys("commentContent");
         bmobQuery.findObjects(this, new FindListener<BookComment>() {
             @Override
             public void onSuccess(List<BookComment> object) {
                 // TODO Auto-generated method stub
                 if(object.size()>0 ) {
-                    comment = object.get(0).getCommentContent();
-                    ShowToast("查询成功:" + comment);
+                    comment = object.get(object.size()-1).getCommentContent();
+                   // ShowToast("查询成功:" + comment);
                     viewComment.setText(comment);
                 }
                 else{
@@ -137,13 +148,15 @@ public class BookDetailActivity extends BaseActivity{
 
     private void queryCommentGrade(){
         BmobQuery<BookCommentGrade> bmobQuery = new BmobQuery<BookCommentGrade>();
+        bmobQuery.addQueryKeys("eGrade");
         bmobQuery.findObjects(this, new FindListener<BookCommentGrade>() {
             @Override
             public void onSuccess(List<BookCommentGrade> object) {
                 // TODO Auto-generated method stub
-                for (BookCommentGrade bookCommentGrade : object) {
-                    egrade = bookCommentGrade.geteGrade();
+                if (object.size()>0) {
+                    egrade = object.get(object.size()-1).geteGrade();
                 }
+                rate_star.setRating((float)egrade);
                 //ShowToast("查询成功:" + count + "___" + egrade);
 
             }

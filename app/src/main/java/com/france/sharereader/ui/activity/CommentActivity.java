@@ -66,6 +66,9 @@ public class CommentActivity extends BaseActivity {
                 rateStars = rate_star.getRating();
                 addComment();
                 queryCommentGrade();
+                Intent intent = new Intent(CommentActivity.this, BookDetailActivity.class);
+                startActivity(intent);
+                CommentActivity.this.finish();
             }
         });
         // cancel event
@@ -76,24 +79,6 @@ public class CommentActivity extends BaseActivity {
                 Intent intent = new Intent(CommentActivity.this, PDFViewActivity.class);
                 startActivity(intent);
                 CommentActivity.this.finish();
-            }
-        });
-    }
-    private void queryBook(){
-        BmobQuery<BookComment> bmobQuery = new BmobQuery<BookComment>();
-        bmobQuery.getObject(this, bookname, new GetListener<BookComment>() {
-            @Override
-            public void onSuccess(BookComment object) {
-                // TODO Auto-generated method stub
-                ShowToast("有数据表查询成功");
-                addComment();
-            }
-
-            @Override
-            public void onFailure(int code, String msg) {
-                // TODO Auto-generated method stub
-                ShowToast("无数据表查询失败：" + msg);
-                addComment();
             }
         });
     }
