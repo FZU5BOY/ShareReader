@@ -26,6 +26,7 @@
 
     <uses-permission android:name="cn.bmob.permission.push" />
 
+
     <receiver
         android:name=".ui.activity.alarmreceiver"
         android:process=":remote" />
@@ -105,8 +106,7 @@
         </activity>
         <activity
             android:name=".ui.activity.AlarmActivity"
-            android:label="@string/title_activity_alarm" >
-            android:name=".ui.activity.LoginActivity">
+            android:label="@string/title_activity_alarm">
         </activity>
         <activity android:name=".ui.activity.CommentActivity" >
         </activity>
